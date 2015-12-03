@@ -1,7 +1,6 @@
-
 body {
-  margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
+  margin-top: 50px;
+  /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */ }
 
 .image-bg-fluid-height,
 .image-bg-fixed-height {
@@ -9,51 +8,38 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  -o-background-size: cover;
-}
+  -o-background-size: cover; }
 
 .image-bg-fluid-height {
-  background: url('https://s3-us-west-2.amazonaws.com/mountains/annapurna-mountain-range-698731_1920.jpg') no-repeat center center scroll;
-  padding: 100px 0;
-}
+  background: url("https://s3-us-west-2.amazonaws.com/mountains/annapurna-mountain-range-698731_1920.jpg") no-repeat center center scroll;
+  padding: 100px 0; }
 
 .image-bg-fixed-height {
-  background: url('https://s3-us-west-2.amazonaws.com/mountains/flight-mountains-sky-flying.jpeg') no-repeat center center scroll;
-  height: 450px;
-}
+  background: url("https://s3-us-west-2.amazonaws.com/mountains/flight-mountains-sky-flying.jpeg") no-repeat center center scroll;
+  height: 450px; }
 
 .img-center {
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 section {
-  padding: 75px 0;
-}
+  padding: 75px 0; }
 
 .section-heading {
   margin: 30px 0;
-  font-size: 4em;
-}
+  font-size: 4em; }
 
 .section-lead {
-  margin: 30px 0;
-}
+  margin: 30px 0; }
 
 .section-paragraph {
-  margin: 30px 0;
-}
+  margin: 30px 0; }
 
 footer {
-  margin: 50px 0;
-}
+  margin: 50px 0; }
 
-@media(max-width:768px) {
+@media (max-width: 768px) {
   section {
     padding-top: 25px;
-    padding-bottom: 25px;
-  }
-
+    padding-bottom: 25px; }
   .section-heading {
-    font-size: 2em;
-  }
-}
+    font-size: 2em; } }
