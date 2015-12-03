@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, '../client/public')));
 
 // *** view routes *** //
 app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../client/public/views/', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
 });
 
 // *** main routes *** //
