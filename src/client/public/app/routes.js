@@ -4,13 +4,19 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider
   .when('/',{
     templateUrl: '../views/index.html'
+  })
+  .when('/generator', {
+    templateUrl: '../views/generator.html'
+  })
+  .when('/hike', {
+    templateUrl: '../views/hike.html'
+  })
+  .when('/hikes/all', {
+    templateUrl: '../views/all-hikes.html'
+  })
+  .when('/geo/share', {
+    templateUrl: '../views/geo-share.html'
   });
-  // .when('/hike', {
-  //   templateUrl: '../views/hike.html'
-  // })
-  // .when('/hike/all', {
-  //   templateUrl: '../views/all.html'
-  // });
 }]);
 
 
