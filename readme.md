@@ -1,4 +1,4 @@
-## The Trail Hike Generator
+## The Trail
 
 ### Description
 The Trail aims to provide an easy and efficient hike generating service for individuals traveling to Colorado, or individuals simply seeking a straightforward resource for finding their next adventure.
