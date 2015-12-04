@@ -75,3 +75,29 @@ h4 {
 .geo {
   padding: 5%;
 }
+
+.block-section {
+  margin: 0 auto;
+  width: 80%;
+  height: 100vh;
+  background: #ccc;
+  padding: 20px;
+}
+
+.block-bar {
+  color: white;
+  position: relative;
+  background: black;
+  height: 7%;
+}
+
+.block-bar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -9999px;
+  right: 0;
+  border-left: 9999px solid black;
+  box-shadow: 9999px 0 0 black;
+}
