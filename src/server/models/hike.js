@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-var hikeSchema = new Schema(
+var Hike = new Schema(
   {
     admin_id: Number,
     name: String,
@@ -19,11 +19,5 @@ var hikeSchema = new Schema(
   }
 );
 
-var Hike = mongoose.model('hike', hikeSchema);
-
-
-module.exports = {
-  Hike: Hike
-};
-
+module.exports = mongoose.model('hike', Hike);
 

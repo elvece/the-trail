@@ -8,11 +8,15 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
 
 // seed the database
-var seedDatabase = require('./models/seed');
-seedDatabase();
+// var seedDatabase = require('./models/seed');
+// seedDatabase();
 
+// *** config file *** //
+var config = require('../../_config');
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -36,7 +40,7 @@ app.get('/', function(req, res, next) {
 
 // *** main routes *** //
 app.use('/', routes);
-app.use('/hikes/', hikes);
+app.use('/hikes', hikes);
 
 // *** mongoose ** //
 mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
