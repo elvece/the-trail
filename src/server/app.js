@@ -1,3 +1,6 @@
+//database
+require('./models/hike');
+
 // *** main dependencies *** //
 var express = require('express');
 var path = require('path');
@@ -6,17 +9,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// seed the database
+var seedDatabase = require('./models/seed');
+seedDatabase();
+
+
 // *** routes *** //
 var routes = require('./routes/index.js');
-
+var hikes = require('./routes/hikes.js');
 
 // *** express instance *** //
 var app = express();
-
-
-
-// *** static directory *** //
-app.set('views', path.join(__dirname, 'views'));
 
 
 // *** config middleware *** //
@@ -33,6 +36,16 @@ app.get('/', function(req, res, next) {
 
 // *** main routes *** //
 app.use('/', routes);
+app.use('/hikes/', hikes);
+
+// *** mongoose ** //
+mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
+  if(err) {
+    console.log('Error connecting to the database. ' + err);
+  } else {
+    console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+  }
+});
 
 
 // catch 404 and forward to error handler
