@@ -5,6 +5,7 @@ var Hike = mongoose.model('hikes');
 
 //get all hikes
 router.get('/all', function(req, res, next){
+
   Hike.find(function(err, hikes){
     if(err){
       res.json(err);
@@ -16,6 +17,7 @@ router.get('/all', function(req, res, next){
 });
 
 router.get('/hike/:id', function(req, res, next) {
+
   Hike.findById(req.params.id, function(err, data){
     if(err){
       res.json(err);
