@@ -7,7 +7,9 @@ var Hike = mongoose.model('hikes');
 
 //post save stream to hike
 router.post('/stream', function(req, res, next) {
+
   var newStream = new Stream({users:req.body.users, room:req.body.room});
+
   newStream.save(function(err, stream){
     if(err){
       res.json(err);
@@ -41,6 +43,18 @@ router.post('/comment', function(req, res, next) {
         res.json(data);
       }
     });
+  });
+});
+
+//get single stream
+router.get('/stream/:id', function(req, res, next) {
+  Stream.findById(req.params.id, function(err, data){
+    if(err){
+      res.json(err);
+    }
+    else{
+      res.json(data);
+    }
   });
 });
 
