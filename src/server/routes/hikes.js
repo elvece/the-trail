@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var Hike = mongoose.model('hike');
+var Hike = mongoose.model('hikes');
 
 //get all hikes
 router.get('/all', function(req, res, next){

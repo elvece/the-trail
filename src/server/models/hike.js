@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var Hike = new Schema(
   {
@@ -15,9 +15,9 @@ var Hike = new Schema(
     map: [Number],
     info: String,
     comments: [{type: Schema.Types.ObjectId,
-    ref:'stream'}]
+    ref:'streams'}]
   }
 );
 
-module.exports = mongoose.model('hike', Hike);
+module.exports = mongoose.model('hikes', Hike);
 

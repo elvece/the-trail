@@ -1,5 +1,6 @@
 //database
 require('./models/hike');
+require('./models/stream');
 
 // *** main dependencies *** //
 var express = require('express');
@@ -21,6 +22,7 @@ var config = require('../../_config');
 // *** routes *** //
 var routes = require('./routes/index.js');
 var hikes = require('./routes/hikes.js');
+var geoShare = require('./routes/stream.js');
 
 // *** express instance *** //
 var app = express();
@@ -41,6 +43,7 @@ app.get('/', function(req, res, next) {
 // *** main routes *** //
 app.use('/', routes);
 app.use('/hikes', hikes);
+app.use('/geo-share', geoShare);
 
 // *** mongoose ** //
 mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
