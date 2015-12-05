@@ -28,7 +28,7 @@ router.post('/stream', function(req, res, next) {
 });
 
 //post save comment to stream
-router.post('/comment', function(req, res, next) {
+router.post('/stream/comment', function(req, res, next) {
 
   var newComment = new Comment({
     user:req.body.user,
