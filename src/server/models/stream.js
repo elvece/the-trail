@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var Stream = new Schema({
   room: String,
   users: Array,
-  messages: [{type: Schema.Types.ObjectId,
-    ref:'chatMessages'}]
+  comments: [{type: Schema.Types.ObjectId,
+    ref:'comments'}]
 });
 
 //individual comments
@@ -16,5 +16,5 @@ var Comment = new Schema({
 });
 
 
-module.exports = mongoose.model('comment', Comment);
-module.exports = mongoose.model('stream', Stream);
+module.exports = mongoose.model('comments', Comment);
+module.exports = mongoose.model('streams', Stream);
