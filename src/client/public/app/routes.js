@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider){
     templateUrl: '../views/all-hikes.html'
   })
   .when('/geo/share', {
-    templateUrl: '../geo/geo-share.html'
+    templateUrl: '../views/geo-share.html'
   });
 }]);
 
