@@ -1,6 +1,6 @@
 factories.factory('streamFactory', streamService );
 
-repoService.$inject = ['$http'];
+streamService.$inject = ['$http'];
 
   function streamService ($http) {
 
