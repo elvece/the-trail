@@ -100,6 +100,9 @@ h4 {
 .message-box {
   height: 90%;
   overflow-y: auto; }
+  .message-box ul {
+    padding-left: 0;
+    list-style: none; }
 
 .current-user-box {
   width: 100%;

@@ -122,9 +122,14 @@ h4 {
 
 }
 
-.message-box{
+.message-box {
   height: 90%;
   overflow-y: auto;
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+  }
 }
 
 .current-user-box{
@@ -139,12 +144,14 @@ h4 {
   text-align: center;
 }
 
-.centered{
+.centered {
   display: table;
   margin: auto;
 }
 
 .stripes li:nth-child(odd) {
   background: white;
+
 }
+
 
