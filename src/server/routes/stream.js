@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var Comment = mongoose.model('comments');
 var Stream = mongoose.model('streams');
 var Hike = mongoose.model('hikes');
@@ -56,7 +57,9 @@ router.post('/stream/comment', function(req, res, next) {
 //get single stream
 router.get('/stream/:id', function(req, res, next) {
 
-  Stream.findById(req.params.id, function(err, data){
+  Stream.findById(req.params.id)
+    .deepPopulate('comments')
+    .exec(function(err, data){
     if(err){
       res.json(err);
     }
@@ -65,5 +68,6 @@ router.get('/stream/:id', function(req, res, next) {
     }
   });
 });
+
 
 module.exports = router;

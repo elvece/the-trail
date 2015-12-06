@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var deepPopulate = require("mongoose-deep-populate")(mongoose);
 
 var Hike = new Schema(
   {
@@ -18,6 +19,8 @@ var Hike = new Schema(
     ref:'streams'}]
   }
 );
+
+Hike.plugin(deepPopulate);
 
 module.exports = mongoose.model('hikes', Hike);
 

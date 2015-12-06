@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var Schema = mongoose.Schema;
 
 //entire stream
@@ -16,6 +17,8 @@ var Comment = new Schema({
   location: [Number]
 });
 
+Comment.plugin(deepPopulate);
+Stream.plugin(deepPopulate);
 
 module.exports = mongoose.model('comments', Comment);
 module.exports = mongoose.model('streams', Stream);

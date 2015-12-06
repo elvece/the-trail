@@ -14,7 +14,7 @@ streamService.$inject = ['$http'];
       function getStream(streamID){
         return $http({
           method: 'GET',
-          url: '/stream/' + streamID
+          url: '/geo-share/stream/' + streamID
         });
       }
 
