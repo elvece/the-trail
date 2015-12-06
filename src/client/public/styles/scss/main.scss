@@ -101,3 +101,50 @@ h4 {
   border-left: 9999px solid black;
   box-shadow: 9999px 0 0 black;
 }
+
+.stream-box {
+  width: 100%;
+  height: 650px;
+  border: 2px solid black;
+  background-color: #ccc;
+}
+
+.comment-input{
+  height: 50px;
+  width: 80%;
+  margin-left: 1%;
+  border: 1px solid grey;
+}
+
+.comment-input:active,
+.comment-input:focus{
+  outline: none;
+
+}
+
+.message-box{
+  height: 90%;
+  overflow-y: auto;
+}
+
+.current-user-box{
+  width: 100%;
+  height: 200px;
+  border: 2px solid black;
+  overflow-y:auto;
+  background: #ccc;
+}
+
+.center {
+  text-align: center;
+}
+
+.centered{
+  display: table;
+  margin: auto;
+}
+
+.stripes li:nth-child(odd) {
+  background: white;
+}
+

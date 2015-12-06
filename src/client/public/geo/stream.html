@@ -1,7 +1,20 @@
 
 <h1>Hike Stream</h1>
 
-<form ng-submit="sendMessage()" name="chatSend">
-  <input type="text" ng-model="chatInput" class="chat-input" autocomplete="off" required>
-  <button ng-disabled="chatSend.$invalid" class= "chat-submit">Send</button>
-</form>
+<div class="stream-box">
+  <div class="message-box">
+    <ul id="stream-board" class="stripes"></ul>
+  </div>
+
+  <form ng-submit="sendMessage()" name="message">
+    <input type="text" ng-model="chatInput" class="comment-input" autocomplete="off" required>
+    <button ng-disabled="message.$invalid" class="btn btn-default">Send</button>
+  </form>
+</div>
+
+<br>
+<div class="current-user-box">
+  <h4 class="center">current users</h4>
+  <ul id="current-users">
+  </ul>
+</div>
