@@ -4,7 +4,7 @@ angular.module('directives')
       restrict: 'E',
       templateUrl: 'geo/stream.html',
       controller: function($scope, streamFactory){
-        var socket = io.connect('http://localhost:3000' || 'https://the-trail.herokuapp.com');
+        var socket = io.connect('https://localhost:3000' || 'https://the-trail.herokuapp.com');
         socket.on('hi', function(data){
           console.log(data);
           //then can emit another event
