@@ -3,6 +3,7 @@ require('./models/hike');
 require('./models/stream');
 
 // seed the database
+// write logic to only seed if empty for heroku
 // var seedDatabase = require('./models/seed');
 // seedDatabase();
 
