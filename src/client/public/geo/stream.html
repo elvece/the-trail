@@ -6,9 +6,9 @@
     <ul id="stream-board" class="stripes"></ul>
   </div>
 
-  <form ng-submit="sendMessage()" name="message">
-    <input type="text" ng-model="chatInput" class="comment-input" autocomplete="off" required>
-    <button ng-disabled="message.$invalid" class="btn btn-default">Send</button>
+  <form ng-submit="makeComment()" name="comment">
+    <input type="text" ng-model="commentInput" class="comment-input" autocomplete="off" required>
+    <button ng-disabled="comment.$invalid" class="btn btn-default">Send</button>
   </form>
 </div>
 

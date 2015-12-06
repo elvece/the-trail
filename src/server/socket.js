@@ -13,12 +13,17 @@ module.exports = function(io) {
     //   io.to(socket.room).emit('current-users', users);
     // });
 
+    socket.on('init', function(room){
+      socket.room = room;
+      socket.join(room);
+    });
+
     // //message to stream
     socket.on('comment-sent', function(message){
       io.to(socket.room).emit('comment-received', {
-        message: message,
-        user: socket.user,
-        location: location
+        message: message
+        // user: socket.user,
+        // location: location
       });
     });
 
