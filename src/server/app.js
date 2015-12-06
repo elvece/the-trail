@@ -1,6 +1,10 @@
-//database
+// *** databases *** //
 require('./models/hike');
 require('./models/stream');
+
+// seed the database
+// var seedDatabase = require('./models/seed');
+// seedDatabase();
 
 // *** main dependencies *** //
 var express = require('express');
@@ -12,9 +16,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 
-// seed the database
-// var seedDatabase = require('./models/seed');
-// seedDatabase();
 
 // *** config file *** //
 var config = require('../../_config');
@@ -27,6 +28,10 @@ var geoShare = require('./routes/stream.js');
 // *** express instance *** //
 var app = express();
 
+// *** attach socket.io to the app *** //
+var io = require('socket.io')();
+app.io = io;
+require('./socket')(io);
 
 // *** config middleware *** //
 app.use(logger('dev'));
@@ -45,7 +50,7 @@ app.use('/', routes);
 app.use('/hikes', hikes);
 app.use('/geo-share', geoShare);
 
-// *** mongoose ** //
+// *** mongoose *** //
 mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
   if(err) {
     console.log('Error connecting to the database. ' + err);
@@ -54,14 +59,12 @@ mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
   }
 });
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
 
 // *** error handlers *** //
 
