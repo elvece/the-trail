@@ -2,11 +2,6 @@
 require('./models/hike');
 require('./models/stream');
 
-// seed the database
-// write logic to only seed if empty for heroku
-// var seedDatabase = require('./models/seed');
-// seedDatabase();
-
 // *** main dependencies *** //
 var express = require('express');
 var path = require('path');
@@ -19,6 +14,12 @@ var mongoose = require('mongoose');
 
 // *** config file *** //
 var config = require('../../_config');
+
+// seed the database
+// write logic to only seed if empty for heroku
+// var seedDatabase = require('./models/seed');
+// seedDatabase();
+
 
 // *** routes *** //
 var routes = require('./routes/index.js');
@@ -40,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
+app.use(favicon(__dirname + '../../client/img/favicon.ico'));
+
 // *** view routes *** //
 app.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '../client/public/views/', 'layout.html'));
@@ -58,6 +61,7 @@ mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
     console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
   }
 });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

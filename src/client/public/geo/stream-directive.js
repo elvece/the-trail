@@ -9,7 +9,7 @@ angular.module('directives')
         var streamBoard = angular.element(document.querySelector('#stream-board'));
         var currentUsers = angular.element(document.querySelector('#current-users'));
         //hard coded to start, will need to be dynamic based on hike currently displayed
-        var streamID = '5663911fe0b9daf610a36123';
+        var streamID = '';
         var user;
 
         // socket.on('hi', function(data){

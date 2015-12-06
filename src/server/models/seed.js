@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Hike = require('./hike');
 
-
 function seedDatabase() {
 
   Hike.find({}, function(err, documents){
@@ -20,7 +19,8 @@ function seedDatabase() {
           feature: ["Lake"],
           file: {name: "Maroon Bells", bin: "https://cdn.photographylife.com/wp-content/uploads/2010/11/Sunrise-at-Maroon-Bells.jpg"},
           map: [39.0708, -106.9890],
-          info: "Information"
+          info: "Information",
+          likes: 2
         }
       ).save(function(err) {
         if (err) throw err;

@@ -14,7 +14,8 @@ var Stream = new Schema({
 var Comment = new Schema({
   user: String,
   message: String,
-  location: [Number]
+  location: [Number],
+  likes: Number
 });
 
 Comment.plugin(deepPopulate);
