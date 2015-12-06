@@ -5,6 +5,10 @@ angular.module('directives')
       templateUrl: 'geo/stream.html',
       controller: function($scope, streamFactory){
         var socket = io.connect();
+        socket.on('hi', function(data){
+          console.log(data);
+          //then can emit another event
+        });
       }
     };
   }]);

@@ -9,8 +9,8 @@ var Hike = mongoose.model('hikes');
 router.post('/stream', function(req, res, next) {
 
   var newStream = new Stream({
-    users:req.body.users,
-    room:req.body.room
+    users: req.body.users,
+    room: req.body.room
   });
 
   newStream.save(function(err, stream){
@@ -31,8 +31,9 @@ router.post('/stream', function(req, res, next) {
 router.post('/stream/comment', function(req, res, next) {
 
   var newComment = new Comment({
-    user:req.body.user,
-    message:req.body.message
+    user: req.body.user,
+    message: req.body.message,
+    location: req.body.location
   });
 
   newComment.save(function(err, message){
