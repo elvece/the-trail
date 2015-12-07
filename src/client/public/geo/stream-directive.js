@@ -24,7 +24,7 @@ angular.module('directives')
             username: $scope.userNameInput
           };
           var message = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(user.phone, message)
+          streamFactory.startText(user.phone, user.username, message)
             .then(function(data){
               console.log(data);
             });

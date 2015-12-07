@@ -18,6 +18,7 @@ router.post('/start/session', function(req, res, next){
     phone: req.body.phone,
     username: req.body.username
   };
+  console.log(user)
   client.messages.create({
     to: user.phone,
     from: '+17203303695',
@@ -39,7 +40,10 @@ router.post('/start/session', function(req, res, next){
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
   var newComment = new Comment({
-    user: req.body.user,
+    user: {
+      phone: req.body.phone,
+      username: req.body.username
+    },
     message: req.body.message,
     location: req.body.location
   });
@@ -59,16 +63,9 @@ router.post('/user/comment', function(req, res, next){
           to: user.phone,
           from: '+17203303695',
           body: 'Your comment has been saved to the live stream of this hike!'
-        }, function(err, message){
-          if(err){
-            res.json(err);
-          }
-          else {
-            res.json(message);
-          }
         });
         res.json(newComment);
-        socket.emit('new comment from twilio!');
+        // socket.emit('new comment from twilio!');
       }
     });
   });
