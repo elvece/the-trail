@@ -13,16 +13,17 @@ angular.module('directives')
         var streamID = '5664a3580b24c19105f4a9bc';
         var userID = 0;
         var currentUserNames = [];
-        // var user;
+        var user;
         // var userPhone;
         // var userName;
 
         //start session by sending text to user
         $scope.startSession = function(){
-          var user = {
+          user = {
             phone: $scope.phoneNumberInput,
             username: $scope.userNameInput
           };
+          console.log(user);
           var message = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
           streamFactory.startText(user.phone, user.username, message)
             .then(function(data){
@@ -31,6 +32,7 @@ angular.module('directives')
           $scope.phoneNumberInput = "";
           $scope.userNameInput = "";
         };
+
 
         ////// *** HELPER FUNCTIONS *** //////
 
@@ -41,16 +43,16 @@ angular.module('directives')
               console.log(data.data);
               socket.connect();
               var comments = data.data.comments;
-              var user = {
-                phone: comments.user.phone,
-                username: comments.user.username
-              };
-              var userTextName = '@'+user.username;
+              // var user = {
+              //   phone: comments.user.phone,
+              //   username: comments.user.username
+              // };
+              // var userTextName = '@'+user.username;
               var message = comments.message;
               var location = comments.location;
               var room = data.data.room;
               socket.emit('init', room);
-              checkUser(user);
+              // checkUser(user);
               for (var i = 0; i < 30; i++) {
                 if (comments[i]) {
                   streamBoard.append('<li>'+comments[i].user.username+ ': '+comments[i].message+'</li>');
@@ -60,21 +62,21 @@ angular.module('directives')
         }
         displayStream();
 
-        function checkUser(user){
-          //here, user will be data get back from twilio
-          if (user.username = 'undefined' || ""){
-            user.username = makeUserName();
-          } else {
-            user.username = user.username;
-          }
-          if (currentUserNames.indexOf(user.username) === -1){
-            currentUserNames.push(user.username);
-          } else {
-            $scope.errorMessage = 'That username is already in use. Please choose another one.';
-          }
-          console.log(user.username);
-          socket.emit('entered', user.username);
-        }
+        // function checkUser(user){
+        //   //here, user will be data get back from twilio
+        //   if (user.username = 'undefined' || ""){
+        //     user.username = makeUserName();
+        //   } else {
+        //     user.username = user.username;
+        //   }
+        //   if (currentUserNames.indexOf(user.username) === -1){
+        //     currentUserNames.push(user.username);
+        //   } else {
+        //     $scope.errorMessage = 'That username is already in use. Please choose another one.';
+        //   }
+        //   console.log(user.username);
+        //   socket.emit('entered', user.username);
+        // }
 
         function userInZone(){
           //checks if users in location parameters
