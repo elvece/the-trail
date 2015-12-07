@@ -20,7 +20,8 @@ function seedDatabase() {
           file: {name: "Maroon Bells", bin: "https://cdn.photographylife.com/wp-content/uploads/2010/11/Sunrise-at-Maroon-Bells.jpg"},
           map: [39.0708, -106.9890],
           info: "Information",
-          likes: 2
+          likes: 2,
+          comments: []
         }
       ).save(function(err) {
         if (err) throw err;
@@ -32,4 +33,3 @@ function seedDatabase() {
 
 
 module.exports = seedDatabase;
-

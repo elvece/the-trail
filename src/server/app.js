@@ -10,7 +10,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+// var seed = require('../models/seed');
 
 // *** config file *** //
 var config = require('../../config');
@@ -60,7 +60,7 @@ mongoose.connect(config.MONGO_URI[app.settings.env], function(err, res) {
     console.log('Connected to Database: ' + config.MONGO_URI[app.settings.env]);
   }
 });
-
+// require('./models/seeder');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

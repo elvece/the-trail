@@ -22,6 +22,5 @@ var Hike = new Schema(
 );
 
 Hike.plugin(deepPopulate);
-
 module.exports = mongoose.model('hikes', Hike);
 

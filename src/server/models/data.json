@@ -1,0 +1,53 @@
+
+{
+  "comments": {
+    "_model": "comments",
+    "hike_1_comment_1": {
+      "user": {
+        "phone": "1234567890",
+        "username": "testUserName"
+      },
+      "message": "Test message",
+      "location": ["39.0708", "-106.9890"],
+      "likes": "1"
+    },
+    "hike_1_comment_2": {
+      "user": {
+        "phone": "0987654321",
+        "username": "anotherUserName"
+      },
+      "message": "Another test message",
+      "location": ["39.0708", "-106.9890"],
+      "likes": "2"
+    }
+  },
+  "streams": {
+    "_model": "streams",
+    "hike_1_stream": {
+      "room": "Maroon Bells",
+      "users": ["Test"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    }
+  },
+  "hikes": {
+    "_model": "hikes",
+    "hike_1": {
+      "adming_id": "1",
+      "name": "Maroon Creek Trail",
+      "location": "Maroon Bells, Aspen, CO",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2,5",
+      "feature": ["Lake"],
+      "file": {
+        "name": "Maroon Bells",
+        "bin": "https://cdn.photographylife.com/wp-content/uploads/2010/11/Sunrise-at-Maroon-Bells.jpg"
+        },
+      "map": ["39.0708", "-106.9890"],
+      "info": "Information to be entered about this trail.",
+      "likes": "2",
+      "comments": ["->streams.hike_1_stream"]
+    }
+  }
+}
