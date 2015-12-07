@@ -34,13 +34,15 @@ router.post('/start/session', function(req, res, next){
 
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
+
   var newComment= new Comment({
     user: {
-    username: req.body.username,
-    phone: req.body.phone
+      username: req.body.username,
+      phone: req.body.from
     },
-    message: req.body.Body});//??
+    message: req.body.body});//??
   console.log('newComment: '+newComment);
+
   newComment.save(function(err, message){
      if(err){
       res.json(err);
@@ -52,7 +54,7 @@ router.post('/user/comment', function(req, res, next){
       if (err){
         res.json(err);
       }
-      else{
+      else {
         client.messages.create({
           to: user.phone,
           from: '+17203303695',
