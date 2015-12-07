@@ -48,31 +48,31 @@ angular.module('directives')
 
         ////// *** HELPER FUNCTIONS *** //////
 
-        function displayStream(){
-          streamBoard.empty();
-          streamFactory.getStream(streamID)
-            .then(function(data){
-              console.log(data.data);
-              socket.connect();
-              var comments = data.data.comments;
-              // var user = {
-              //   phone: comments.user.phone,
-              //   username: comments.user.username
-              // };
-              // var userTextName = '@'+user.username;
-              var message = comments.message;
-              var location = comments.location;
-              var room = data.data.room;
-              socket.emit('init', room);
-              // checkUser(user);
-              for (var i = 0; i < 30; i++) {
-                if (comments[i]) {
-                  streamBoard.append('<li>'+comments[i].user.username+ ': '+comments[i].message+'</li>');
-                }
-              }
-            });
-        }
-        displayStream();
+        // function displayStream(){
+        //   streamBoard.empty();
+        //   streamFactory.getStream(streamID)
+        //     .then(function(data){
+        //       console.log(data.data);
+        //       socket.connect();
+        //       var comments = data.data.comments;
+        //       // var user = {
+        //       //   phone: comments.user.phone,
+        //       //   username: comments.user.username
+        //       // };
+        //       // var userTextName = '@'+user.username;
+        //       var message = comments.message;
+        //       var location = comments.location;
+        //       var room = data.data.room;
+        //       socket.emit('init', room);
+        //       // checkUser(user);
+        //       for (var i = 0; i < 30; i++) {
+        //         if (comments[i]) {
+        //           streamBoard.append('<li>'+comments[i].user.username+ ': '+comments[i].message+'</li>');
+        //         }
+        //       }
+        //     });
+        // }
+        // displayStream();
 
         function checkUser(user){
           //here, user will be data get back from twilio

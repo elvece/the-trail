@@ -1,6 +1,6 @@
 var app = angular.module('myApp');
 
-app.controller('myController', ['$scope', 'hikeFactory', function($scope, hikeFactory){
+app.controller('myController', ['$scope', '$routeParams', 'hikeFactory', function($scope, $routeParams, hikeFactory){
 
     $scope.title = "The Trail";
     $scope.action = {};
@@ -10,7 +10,7 @@ app.controller('myController', ['$scope', 'hikeFactory', function($scope, hikeFa
     hikeFactory.getAllHikes()
       .then(function(res){
         $scope.hikes = res.data;
-          console.log($scope.hikes);
+          // console.log($scope.hikes);
       });
 }]);
 

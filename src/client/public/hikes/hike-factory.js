@@ -13,7 +13,7 @@ hikeService.$inject = ['$http'];
       function getHike(hikeID){
         return $http({
           method: 'GET',
-          url: '/hike/' + hikeID
+          url: '/hikes/hike/' + hikeID
         });
       }
 

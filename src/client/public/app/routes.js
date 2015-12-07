@@ -19,6 +19,7 @@ app.config(['$routeProvider', function($routeProvider){
   })
   .when('/geo/share/:hikeId/:hikeName', {
     templateUrl: '../geo/hike/geo-hike.html',
+    controller: 'geoHikeController'
   })
   .otherwise({redirectTo: '/'});
 }]);
