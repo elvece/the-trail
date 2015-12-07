@@ -12,13 +12,19 @@ angular.module('directives')
         //hard coded to start, will need to be dynamic based on hike currently displayed
         var streamID = '5664a3580b24c19105f4a9bc';
         var userID = 0;
+        var currentUserNames = [];
+        // var user;
+        // var userPhone;
+        // var userName;
 
         //start session by sending text to user
         $scope.startSession = function(){
-          var phoneNumber = $scope.phoneNumberInput;
-          var username = $scope.userNameInput;
-          var message = 'Thanks '+username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(phoneNumber, message)
+          var user = {
+            phone: $scope.phoneNumberInput,
+            username: $scope.userNameInput
+          };
+          var message = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
+          streamFactory.startText(user.phone, message)
             .then(function(data){
               console.log(data);
             });
@@ -35,12 +41,16 @@ angular.module('directives')
               console.log(data.data);
               socket.connect();
               var comments = data.data.comments;
+              var user = {
+                phone: comments.user.phone,
+                username: comments.user.username
+              };
+              var userTextName = '@'+user.username;
               var message = comments.message;
               var location = comments.location;
-              var user = comments.user;
               var room = data.data.room;
               socket.emit('init', room);
-              userInZone();
+              checkUser(user);
               for (var i = 0; i < 30; i++) {
                 if (comments[i]) {
                   streamBoard.append('<li>'+comments[i].user.username+ ': '+comments[i].message+'</li>');
@@ -50,30 +60,44 @@ angular.module('directives')
         }
         displayStream();
 
-        function userInZone(){
+        function checkUser(user){
           //here, user will be data get back from twilio
-          if (user = 'undefined'){
-            makeUserName();
+          if (user.username = 'undefined' || ""){
+            user.username = makeUserName();
+          } else {
+            user.username = user.username;
           }
-        // console.log(user);
-          socket.emit('entered', user);
+          if (currentUserNames.indexOf(user.username) === -1){
+            currentUserNames.push(user.username);
+          } else {
+            $scope.errorMessage = 'That username is already in use. Please choose another one.';
+          }
+          console.log(user.username);
+          socket.emit('entered', user.username);
+        }
+
+        function userInZone(){
+          //checks if users in location parameters
         }
 
         function makeUserName(){
-          // var createdNames = [];
           userID ++;
-          user = 'trailblazer'+userID;
-          // createdNames.push(user);
+          var generatedUserName = 'trailblazer'+userID;
+          return generatedUserName;
         }
 
         ////// *** SOCKET REQUESTS *** //////
 
-       //make comment to hike stream
+        //comments on web will only be to other users; web users can only like comments, but not post because not in location. have to target @user to send them a question
+
+       //make comment to hike stream - really this will only be posts from users phones
         $scope.makeComment = function(){
-          var newComment = $scope.commentInput;
-          socket.emit('comment-sent', newComment);
-          streamFactory.saveComment(user, newComment, streamID);
-          $scope.commentInput = "";
+          // var newComment = $scope.commentInput;
+          // socket.emit('comment-sent', newComment);
+          //this user needs to be username and phonenumber
+          // streamFactory.saveComment(user, newComment, streamID);
+          // $scope.commentInput = "";
+          streamFactory.saveUserComment(user, message, streamID);
         };
 
         //append comment after hitting socket

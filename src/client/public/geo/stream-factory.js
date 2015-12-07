@@ -44,13 +44,27 @@ streamService.$inject = ['$http'];
         });
       }
 
-      function startText(phone, message){
+      function startText(phone, user, message){
         return $http({
           method: 'POST',
           url: '/geo-share/start/session',
           data: {
                   phone: phone,
+                  user: user,
                   message: message
+                }
+        });
+      }
+
+      function saveUserComment(user, message, location, streamID){
+        return $http({
+          method: 'POST',
+          url: '/geo-share/user/comment',
+          data: {
+                  user: user,
+                  message: message,
+                  location: location,
+                  streamID: streamID
                 }
         });
       }

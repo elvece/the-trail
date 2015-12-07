@@ -14,8 +14,12 @@ var client = require('twilio')(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOK
 
 //route on button click to start session, will send initial text to user asking if they want to join the trail, that is, share location and pick user name
 router.post('/start/session', function(req, res, next){
+  var user = {
+    phone: req.body.phone,
+    username: req.body.username
+  };
   client.messages.create({
-    to: req.body.phone,
+    to: user.phone,
     from: '+17203303695',
     body: req.body.message
   }, function(err, message){
@@ -52,9 +56,9 @@ router.post('/user/comment', function(req, res, next){
       }
       else{
         client.messages.create({
-          to: '+17203303695',
-          from: user.phone,
-          body: req.body.message
+          to: user.phone,
+          from: '+17203303695',
+          body: 'Your comment has been saved to the live stream of this hike!'
         }, function(err, message){
           if(err){
             res.json(err);
