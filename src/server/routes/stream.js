@@ -6,6 +6,11 @@ var Comment = mongoose.model('comments');
 var Stream = mongoose.model('streams');
 var Hike = mongoose.model('hikes');
 
+//twilio
+var config = require('../../../config');
+var client = require('twilio')(config.accountSid, config.authToken);
+
+
 //post save stream to hike
 router.post('/stream', function(req, res, next) {
 

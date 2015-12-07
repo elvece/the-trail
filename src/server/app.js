@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 
 
 // *** config file *** //
-var config = require('../../_config');
+var config = require('../../config');
 
 // seed the database
 // write logic to only seed if empty for heroku
