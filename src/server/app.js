@@ -53,11 +53,11 @@ app.use('/hikes', hikes);
 app.use('/geo-share', geoShare);
 
 // *** mongoose *** //
-mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
+mongoose.connect(config.MONGO_URI[app.settings.env], function(err, res) {
   if(err) {
     console.log('Error connecting to the database. ' + err);
   } else {
-    console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+    console.log('Connected to Database: ' + config.MONGO_URI[app.settings.env]);
   }
 });
 
