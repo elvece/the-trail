@@ -24,25 +24,25 @@ angular.module('directives')
         //start session by sending text to user
         $scope.startSession = function(){
           var newUser = new User($scope.userNameInput, $scope.phoneNumberInput);
+          currentUsersInfo.push(newUser);
           console.log(newUser);
+          console.log(currentUsersInfo);
+
           var message_init = 'Thanks '+newUser.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
           streamFactory.startText(newUser.phone, message_init)
             .then(function(data){
               console.log(data);
-            })
+              socket.emit('entered', newUser.username);
+            });
 
-            // .then(function(data){
-            //   var message_join = ''+newUser.username+' has joined the stream.';
-            //   streamFactory.saveComment(newUser.username, newUser.phone, message_join, streamID)
-            //     .then(function(data){
-            //       console.log(data);
-            //     });
-            // });
-
+          // var message_join = ''+newUser.username+' has joined the stream.';
+          // streamFactory.saveComment(newUser.username, newUser.phone, message_join, streamID)
+          //   .then(function(data){
+          //     console.log(data);
+          //   });
           $scope.phoneNumberInput = "";
           $scope.userNameInput = "";
         };
-
 
         ////// *** HELPER FUNCTIONS *** //////
 
