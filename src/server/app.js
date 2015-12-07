@@ -13,16 +13,9 @@ var mongoose = require('mongoose');
 var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var seeder = require('mongoose-seeder');
 var data = require('./models/data.json');
-// var seed = require('../models/seed');
 
 // *** config file *** //
 var config = require('../../config');
-
-// seed the database
-// write logic to only seed if empty for heroku
-// var seedDatabase = require('./models/seed');
-// seedDatabase();
-
 
 // *** routes *** //
 var routes = require('./routes/index.js');
