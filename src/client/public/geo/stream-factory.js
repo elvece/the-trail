@@ -19,15 +19,16 @@ streamService.$inject = ['$http'];
         });
       }
 
-      function saveComment(user, message, streamID){
+      function saveComment(phone, username, message, location, streamID){
         return $http({
           method: 'POST',
           url: '/geo-share/stream/comment',
           data: {
-                  user: user,
+                  username: username,
+                  phone: phone,
                   message: message,
                   streamID: streamID,
-                  // location: location
+                  location: location
                 }
         });
       }
@@ -44,30 +45,16 @@ streamService.$inject = ['$http'];
         });
       }
 
-      function startText(phone, username, message){
+      function startText(phone, message){
         return $http({
           method: 'POST',
           url: '/geo-share/start/session',
           data: {
                   phone: phone,
-                  username: username,
                   message: message
                 }
         });
       }
 
-      function saveUserComment(phone, username, message, location, streamID){
-        return $http({
-          method: 'POST',
-          url: '/geo-share/user/comment',
-          data: {
-                  phone: phone,
-                  username: username,
-                  message: message,
-                  location: location,
-                  streamID: streamID
-                }
-        });
-      }
   }
 

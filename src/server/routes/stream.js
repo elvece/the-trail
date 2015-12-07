@@ -14,13 +14,8 @@ var client = require('twilio')(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOK
 
 //route on button click to start session, will send initial text to user asking if they want to join the trail, that is, share location and pick user name
 router.post('/start/session', function(req, res, next){
-  var user = {
-    phone: req.body.phone,
-    username: req.body.username
-  };
-  console.log(user)
   client.messages.create({
-    to: user.phone,
+    to: req.body.phone,
     from: '+17203303695',
     body: req.body.message
   }, function(err, message){
@@ -39,21 +34,14 @@ router.post('/start/session', function(req, res, next){
 
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
-  var newComment = new Comment({
-    user: {
-      phone: req.body.phone,
-      username: req.body.username
-    },
-    message: req.body.message,
-    location: req.body.location
-  });
-
+  var newComment= new Comment({user: somethiing, message: req.body.Body});
   newComment.save(function(err, message){
      if(err){
       res.json(err);
     }
     var update = {$push:{comments: newComment}};
     var options = {new: true};
+    //get user info (username and phone) somehow, then use this info to create a new comment, Body is body of message? user needs to be phone user. Once they comment, send this back
     Stream.findByIdAndUpdate(req.body.streamID, update, options, function(err, user){
       if (err){
         res.json(err);

@@ -24,11 +24,18 @@ angular.module('directives')
             username: $scope.userNameInput
           };
           console.log(user);
-          var message = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(user.phone, user.username, message)
+          var message_init = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
+          streamFactory.startText(user.phone, message_init)
             .then(function(data){
               console.log(data);
+            }).then(function(data){
+              var message_join = ''+user.username+' has joined the stream.';
+              streamFactory.saveComment(user.username, user.phone, message_join, streamID)
+                .then(function(data){
+                  console.log(data);
+                });
             });
+
           $scope.phoneNumberInput = "";
           $scope.userNameInput = "";
         };
@@ -99,7 +106,6 @@ angular.module('directives')
           //this user needs to be username and phonenumber
           // streamFactory.saveComment(user, newComment, streamID);
           // $scope.commentInput = "";
-          streamFactory.saveUserComment(user, message, streamID);
         };
 
         //append comment after hitting socket
