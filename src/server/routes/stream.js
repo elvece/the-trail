@@ -34,6 +34,8 @@ router.post('/start/session', function(req, res, next){
 
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
+  console.log('im in here')
+  console.log(req.body)
 
   var newComment= new Comment({
     user: {

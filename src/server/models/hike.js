@@ -15,8 +15,7 @@ var Hike = new Schema(
     file: {name: String, bin: Buffer},
     map: [Number],
     info: String,
-    comments: [{type: Schema.Types.ObjectId,
-    ref:'streams'}],
+    stream: [{type: Schema.Types.ObjectId, ref:'streams'}],
     likes: Number
   }
 );

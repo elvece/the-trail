@@ -21,8 +21,7 @@ module.exports = mongoose.model('comments', Comment);
 var Stream = new Schema({
   room: String,
   users: Array,
-  comments: [{type: Schema.Types.ObjectId,
-    ref:'Comment'}]
+  comments: [{type: Schema.Types.ObjectId, ref:'comments'}]
 });
 
 Stream.plugin(deepPopulate);

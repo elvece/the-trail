@@ -57,15 +57,15 @@ mongoose.connect(config.MONGO_URI[app.settings.env], function(err, res) {
     console.log('Connected to Database: ' + db);
     mongoose.connection.db.listCollections({name: 'hikes'})
       .next(function(err, collinfo) {
-          if (!collinfo) {
-              // The collection does not exist
-              seeder.seed(data).then(function(dbData) {
-                console.log('Database successfully seeded!');
-                // console.log(dbData);
-              }).catch(function(err) {
-                console.log('Error seeding database: '+err);
-              });
-          }
+        if (!collinfo) {
+          // The collection does not exist
+          seeder.seed(data).then(function(dbData) {
+            console.log('Database successfully seeded!');
+            // console.log(dbData);
+          }).catch(function(err) {
+            console.log('Error seeding database: '+err);
+          });
+        }
       });
   }
 });

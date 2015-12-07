@@ -7,20 +7,22 @@ var deepPopulate = require("mongoose-deep-populate")(mongoose);
 //get all hikes
 router.get('/all', function(req, res, next){
 
-  Hike.find(function(err, hikes){
-    if(err){
-      res.json(err);
-    }
-    else{
-      res.json(hikes);
-    }
-  });
+  Hike.find()
+    .deepPopulate('stream stream.comments')
+    .exec(function(err, data){
+      if(err){
+        res.json(err);
+      }
+      else{
+        res.json(data);
+      }
+    });
 });
 
 router.get('/hike/:id', function(req, res, next) {
 
   Hike.findById(req.params.id)
-    .deepPopulate('comments')
+    .deepPopulate('stream stream.comments')
     .exec(function(err, data){
       if(err){
         res.json(err);

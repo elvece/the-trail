@@ -47,7 +47,7 @@
       "map": ["39.0708", "-106.9890"],
       "info": "Information to be entered about this trail.",
       "likes": "2",
-      "comments": ["->streams.hike_1_stream"]
+      "stream": ["->streams.hike_1_stream"]
     }
   }
 }
