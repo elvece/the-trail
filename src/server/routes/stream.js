@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var Comment = mongoose.model('comments');
 var Stream = mongoose.model('streams');
 var Hike = mongoose.model('hikes');
+var deepPopulate = require("mongoose-deep-populate")(mongoose);
 
 //twilio
 var config = require('../../../config');

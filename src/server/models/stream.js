@@ -26,5 +26,3 @@ var Stream = new Schema({
 
 Stream.plugin(deepPopulate);
 module.exports = mongoose.model('streams', Stream);
-
-

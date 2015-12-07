@@ -1,9 +1,10 @@
 angular.module('directives')
-  .directive('liveStream', ['streamFactory', function(streamFactory){
+  .directive('liveStream', ['streamFactory', 'hikeFactory', function(streamFactory){
     return {
       restrict: 'E',
-      templateUrl: 'geo/stream.html',
-      controller: function($scope, streamFactory){
+      templateUrl: 'geo/stream/stream.html',
+      controller: function($scope, streamFactory, hikeFactory){
+
         //leave localhost direct connection for local development, take out for heroku
         //'http://localhost:3000'
         var socket = io.connect('http://localhost:3000');
@@ -11,7 +12,7 @@ angular.module('directives')
         var streamBoard = angular.element(document.querySelector('#stream-board'));
         var currentUsers = angular.element(document.querySelector('#current-users'));
         //hard coded to start, will need to be dynamic based on hike currently displayed
-        var streamID = '5664a3580b24c19105f4a9bc';
+        var streamID = '5665e887ff0ece4062d99d87';
         var userID = 0;
         var currentUserNames = [];
         //array of people who have entered their numbers for access
