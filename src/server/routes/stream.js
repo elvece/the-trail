@@ -8,8 +8,35 @@ var Hike = mongoose.model('hikes');
 
 //twilio
 var config = require('../../../config');
-var client = require('twilio')(config.accountSid, config.authToken);
+var client = require('twilio')(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
 
+///// *** TWILIO ROUTES *** /////
+
+//route on button click to start session, will send initial text to user asking if they want to join the trail, that is, share location and pick user name
+router.post('/start/session', function(req, res, next){
+  client.messages.create({
+    to: req.body.phone,
+    from: '+17203303695',
+    body: req.body.message
+  }, function(err, message){
+    if(err){
+      res.json(err);
+    }
+    else {
+      res.json(message);
+    }
+  });
+});
+
+//get data from user message and store in current stream session
+
+//route to target users from web stream to ask specific questions?
+
+
+
+
+
+///// *** STREAM ROUTES *** /////
 
 //post save stream to hike
 router.post('/stream', function(req, res, next) {

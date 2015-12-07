@@ -7,7 +7,8 @@ streamService.$inject = ['$http'];
     var service = {
       getStream: getStream,
       saveComment: saveComment,
-      saveStream: saveStream
+      saveStream: saveStream,
+      startText: startText
     };
     return service;
 
@@ -39,6 +40,17 @@ streamService.$inject = ['$http'];
                   users: users,
                   room: room,
                   id: hikeID
+                }
+        });
+      }
+
+      function startText(phone, message){
+        return $http({
+          method: 'POST',
+          url: '/geo-share/start/session',
+          data: {
+                  phone: phone,
+                  message: message
                 }
         });
       }

@@ -1,6 +1,12 @@
 
 <h1>Hike Stream</h1>
 
+<form ng-submit="startSession()" name="phoneNumber">
+  <input type="text" ng-model="phoneNumberInput" class="" autocomplete="off" placeholder="format: 3034567899" required>
+  <button ng-disabled="phoneNumber.$invalid" class="btn btn-warning">Join the Trail</button>
+</form>
+<br>
+
 <div class="stream-box">
   <div class="message-box">
     <ul id="stream-board" class="stripes"></ul>

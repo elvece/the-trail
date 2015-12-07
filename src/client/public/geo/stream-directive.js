@@ -14,6 +14,16 @@ angular.module('directives')
         var user;
         var userID = 0;
 
+        //start session by sending text to user
+        $scope.startSession = function(){
+          var phoneNumber = $scope.phoneNumberInput;
+          var message = 'Thanks for joining The Trail. To start live streaming, first enter a username. This will appear on the website for others to see.';
+          streamFactory.startText(phoneNumber, message)
+            .then(function(data){
+              console.log(data)
+            })
+        };
+
         ////// *** HELPER FUNCTIONS *** //////
 
         function displayStream(){
