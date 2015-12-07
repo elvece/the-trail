@@ -11,11 +11,18 @@ angular.module('directives')
         var currentUsers = angular.element(document.querySelector('#current-users'));
         //hard coded to start, will need to be dynamic based on hike currently displayed
         var streamID = '5664a3580b24c19105f4a9bc';
-        var user;
         var room;
+        var user;
+        var userID = 0;
+
         // *** HELPER FUNCTIONS *** //
         function userInZone(){
-          // socket.emit('entered', user);
+          //here, user will be data get back from twilio
+          if (user = 'undefined'){
+            makeUserName();
+          }
+        // console.log(user);
+          socket.emit('entered', user);
           displayStream();
         }
 
@@ -37,32 +44,40 @@ angular.module('directives')
               }
             });
         }
-        userInZone();
+
+        function makeUserName(){
+          // var createdNames = [];
+          userID ++;
+          user = 'trailblazer'+userID;
+          // createdNames.push(user);
+        }
 
         // *** SOCKET REQUESTS *** //
-        // socket.on('current-users', function(users){
-        //   //populate currentUsers list
-        //   currentUsers.empty();
-        //   for (var i = 0; i < users.length; i++) {
-        //     currentUsers.append('<li>'+users[i]+'</li>');
-        //   }
-        // });
+        socket.on('current-users', function(users){
+          //populate currentUsers list
+          currentUsers.empty();
+          for (var i = 0; i < users.length; i++) {
+            currentUsers.append('<li>'+users[i]+'</li>');
+          }
+        });
 
 
        //make comment to hike stream
         $scope.makeComment = function(){
           var newComment = $scope.commentInput;
           socket.emit('comment-sent', newComment);
-          streamFactory.saveComment(newComment, streamID);
+          streamFactory.saveComment(user, newComment, streamID);
           $scope.commentInput = "";
         };
 
         //append comment after hitting socket
         socket.on('comment-received', function(message){
           console.log(message);
-          var newComment = message.message;
-          streamBoard.append('<li>' +message.user+ ': '+newComment+'</li>');
+          streamBoard.append('<li>' +message.user+ ': '+message.message+'</li>');
         });
-      }
+
+        //initalization
+        userInZone();
+      }//end controller
     };
   }]);

@@ -18,26 +18,15 @@ streamService.$inject = ['$http'];
         });
       }
 
-      // function saveComment(user, message, streamID){
-      //   return $http({
-      //     method: 'POST',
-      //     url: '/geo-share/stream/comment',
-      //     data: {
-      //             user: user,
-      //             message: message,
-      //             streamID: streamID
-      //           }
-      //   });
-      // }
-
-      //for testing
-      function saveComment(message, streamID){
+      function saveComment(user, message, streamID){
         return $http({
           method: 'POST',
           url: '/geo-share/stream/comment',
           data: {
+                  user: user,
                   message: message,
                   streamID: streamID
+                  // location: location
                 }
         });
       }
