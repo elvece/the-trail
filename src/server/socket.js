@@ -2,8 +2,6 @@ module.exports = function(io) {
   io.on('connection', function(socket) {
     console.log('connection activated!');
 
-    // socket.emit('hi', { hello: 'world' });
-
     var users = [];
 
     //initalize room for hike
@@ -19,6 +17,7 @@ module.exports = function(io) {
       }
       // console.log(users);
       socket.user = user;
+      console.log(socket.room)
       io.to(socket.room).emit('current-users', users);
     });
 

@@ -25,7 +25,7 @@ streamService.$inject = ['$http'];
           data: {
                   user: user,
                   message: message,
-                  streamID: streamID
+                  streamID: streamID,
                   // location: location
                 }
         });
