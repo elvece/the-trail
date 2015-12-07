@@ -10,6 +10,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var seeder = require('mongoose-seeder');
+var data = require('./models/data.json');
 // var seed = require('../models/seed');
 
 // *** config file *** //
@@ -58,6 +60,12 @@ mongoose.connect(config.MONGO_URI[app.settings.env], function(err, res) {
     console.log('Error connecting to the database. ' + err);
   } else {
     console.log('Connected to Database: ' + config.MONGO_URI[app.settings.env]);
+    seeder.seed(data).then(function(dbData) {
+      console.log('Database successfully seeded!');
+      // console.log(dbData);
+    }).catch(function(err) {
+      console.log('Error seeding database: '+err);
+    });
   }
 });
 // require('./models/seeder');
