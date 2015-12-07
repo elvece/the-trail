@@ -28,16 +28,47 @@ router.post('/start/session', function(req, res, next){
   });
 });
 
-//get username from user message and store in current stream session
-router.post('/get/username', function(req, res, next){
-
-})
-
 
 //get location from user message
 
 
 //user sends comment to stream
+router.post('/user/comment', function(req, res, next){
+  var newComment = new Comment({
+    user: req.body.user,
+    message: req.body.message,
+    location: req.body.location
+  });
+
+  newComment.save(function(err, message){
+     if(err){
+      res.json(err);
+    }
+    var update = {$push:{comments: newComment}};
+    var options = {new: true};
+    Stream.findByIdAndUpdate(req.body.streamID, update, options, function(err, user){
+      if (err){
+        res.json(err);
+      }
+      else{
+        client.messages.create({
+          to: '+17203303695',
+          from: user.phone,
+          body: req.body.message
+        }, function(err, message){
+          if(err){
+            res.json(err);
+          }
+          else {
+            res.json(message);
+          }
+        });
+        res.json(newComment);
+        socket.emit('new comment from twilio!');
+      }
+    });
+  });
+});
 
 
 //route to target users from web stream to ask specific questions?
@@ -74,7 +105,10 @@ router.post('/stream', function(req, res, next) {
 router.post('/stream/comment', function(req, res, next) {
 
   var newComment = new Comment({
-    user: req.body.user,
+    user: {
+      username: req.body.username,
+      phone: req.body.phone
+    },
     message: req.body.message,
     location: req.body.location
   });

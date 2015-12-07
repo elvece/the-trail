@@ -11,14 +11,13 @@ angular.module('directives')
         var currentUsers = angular.element(document.querySelector('#current-users'));
         //hard coded to start, will need to be dynamic based on hike currently displayed
         var streamID = '5664a3580b24c19105f4a9bc';
-        var user;
         var userID = 0;
 
         //start session by sending text to user
         $scope.startSession = function(){
           var phoneNumber = $scope.phoneNumberInput;
           var username = $scope.userNameInput;
-          var message = 'Thanks '+username+' for joining The Trail. To start live streaming, text pictures or messages to this number!';
+          var message = 'Thanks '+username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
           streamFactory.startText(phoneNumber, message)
             .then(function(data){
               console.log(data);
@@ -44,7 +43,7 @@ angular.module('directives')
               userInZone();
               for (var i = 0; i < 30; i++) {
                 if (comments[i]) {
-                  streamBoard.append('<li>'+comments[i].user+ ': '+comments[i].message+'</li>');
+                  streamBoard.append('<li>'+comments[i].user.username+ ': '+comments[i].message+'</li>');
                 }
               }
             });

@@ -12,7 +12,10 @@ var Stream = new Schema({
 
 //individual comments
 var Comment = new Schema({
-  user: String,
+  user: {
+    phone: String,
+    username: String
+  },
   message: String,
   location: [Number],
   likes: Number
