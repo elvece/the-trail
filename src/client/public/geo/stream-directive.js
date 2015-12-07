@@ -5,7 +5,7 @@ angular.module('directives')
       templateUrl: 'geo/stream.html',
       controller: function($scope, streamFactory){
         //leave localhost direct connection for local development, take out for heroku
-        var socket = io.connect('http://localhost:3000');
+        var socket = io.connect('https://localhost:3000');
         //to populate view
         var streamBoard = angular.element(document.querySelector('#stream-board'));
         var currentUsers = angular.element(document.querySelector('#current-users'));
