@@ -17,11 +17,14 @@ angular.module('directives')
         //start session by sending text to user
         $scope.startSession = function(){
           var phoneNumber = $scope.phoneNumberInput;
-          var message = 'Thanks for joining The Trail. To start live streaming, first enter a username. This will appear on the website for others to see.';
+          var username = $scope.userNameInput;
+          var message = 'Thanks '+username+' for joining The Trail. To start live streaming, text pictures or messages to this number!';
           streamFactory.startText(phoneNumber, message)
             .then(function(data){
-              console.log(data)
-            })
+              console.log(data);
+            });
+          $scope.phoneNumberInput = "";
+          $scope.userNameInput = "";
         };
 
         ////// *** HELPER FUNCTIONS *** //////

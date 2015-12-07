@@ -28,7 +28,17 @@ router.post('/start/session', function(req, res, next){
   });
 });
 
-//get data from user message and store in current stream session
+//get username from user message and store in current stream session
+router.post('/get/username', function(req, res, next){
+
+})
+
+
+//get location from user message
+
+
+//user sends comment to stream
+
 
 //route to target users from web stream to ask specific questions?
 
