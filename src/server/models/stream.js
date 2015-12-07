@@ -13,6 +13,7 @@ var Comment = new Schema({
   likes: Number
 });
 
+//registers plugin
 Comment.plugin(deepPopulate);
 module.exports = mongoose.model('comments', Comment);
 

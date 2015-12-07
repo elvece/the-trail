@@ -6,7 +6,8 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
     $scope.hikeName = $routeParams.hikeName;
 
     hikeFactory.getHike($scope.hikeId).then(function(data){
-      console.log(data);
+      console.log(data.data)
+      console.log(data.data.comments[0])
     });
 }]);
 

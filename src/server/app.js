@@ -60,16 +60,22 @@ mongoose.connect(config.MONGO_URI[app.settings.env], function(err, res) {
   if(err) {
     console.log('Error connecting to the database. ' + err);
   } else {
-    console.log('Connected to Database: ' + config.MONGO_URI[app.settings.env]);
-    seeder.seed(data).then(function(dbData) {
-      console.log('Database successfully seeded!');
-      // console.log(dbData);
-    }).catch(function(err) {
-      console.log('Error seeding database: '+err);
-    });
+    var db = config.MONGO_URI[app.settings.env];
+    console.log('Connected to Database: ' + db);
+    mongoose.connection.db.listCollections({name: 'hikes'})
+      .next(function(err, collinfo) {
+          if (!collinfo) {
+              // The collection does not exist
+              seeder.seed(data).then(function(dbData) {
+                console.log('Database successfully seeded!');
+                // console.log(dbData);
+              }).catch(function(err) {
+                console.log('Error seeding database: '+err);
+              });
+          }
+      });
   }
 });
-// require('./models/seeder');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
