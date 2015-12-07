@@ -22,7 +22,7 @@ streamService.$inject = ['$http'];
       function saveComment(phone, username, message, location, streamID){
         return $http({
           method: 'POST',
-          url: '/geo-share/stream/comment',
+          url: '/geo-share/user/comment',
           data: {
                   username: username,
                   phone: phone,

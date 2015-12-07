@@ -34,7 +34,13 @@ router.post('/start/session', function(req, res, next){
 
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
-  var newComment= new Comment({user: somethiing, message: req.body.Body});
+  var newComment= new Comment({
+    user: {
+    username: req.body.username,
+    phone: req.body.phone
+    },
+    message: req.body.Body});//??
+  console.log('newComment: '+newComment);
   newComment.save(function(err, message){
      if(err){
       res.json(err);
@@ -91,6 +97,7 @@ router.post('/stream', function(req, res, next) {
 });
 
 //post save comment to stream
+//old
 router.post('/stream/comment', function(req, res, next) {
 
   var newComment = new Comment({

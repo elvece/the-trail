@@ -13,28 +13,31 @@ angular.module('directives')
         var streamID = '5664a3580b24c19105f4a9bc';
         var userID = 0;
         var currentUserNames = [];
-        var user;
-        // var userPhone;
-        // var userName;
+        //array of people who have entered their numbers for access
+        var currentUsersInfo = [];
+        //user constructor
+        function User(username, phone){
+          this.username = username;
+          this.phone = phone;
+        }
 
         //start session by sending text to user
         $scope.startSession = function(){
-          user = {
-            phone: $scope.phoneNumberInput,
-            username: $scope.userNameInput
-          };
-          console.log(user);
-          var message_init = 'Thanks '+user.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(user.phone, message_init)
+          var newUser = new User($scope.userNameInput, $scope.phoneNumberInput);
+          console.log(newUser);
+          var message_init = 'Thanks '+newUser.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
+          streamFactory.startText(newUser.phone, message_init)
             .then(function(data){
               console.log(data);
-            }).then(function(data){
-              var message_join = ''+user.username+' has joined the stream.';
-              streamFactory.saveComment(user.username, user.phone, message_join, streamID)
-                .then(function(data){
-                  console.log(data);
-                });
-            });
+            })
+
+            // .then(function(data){
+            //   var message_join = ''+newUser.username+' has joined the stream.';
+            //   streamFactory.saveComment(newUser.username, newUser.phone, message_join, streamID)
+            //     .then(function(data){
+            //       console.log(data);
+            //     });
+            // });
 
           $scope.phoneNumberInput = "";
           $scope.userNameInput = "";
@@ -69,21 +72,21 @@ angular.module('directives')
         }
         displayStream();
 
-        // function checkUser(user){
-        //   //here, user will be data get back from twilio
-        //   if (user.username = 'undefined' || ""){
-        //     user.username = makeUserName();
-        //   } else {
-        //     user.username = user.username;
-        //   }
-        //   if (currentUserNames.indexOf(user.username) === -1){
-        //     currentUserNames.push(user.username);
-        //   } else {
-        //     $scope.errorMessage = 'That username is already in use. Please choose another one.';
-        //   }
-        //   console.log(user.username);
-        //   socket.emit('entered', user.username);
-        // }
+        function checkUser(user){
+          //here, user will be data get back from twilio
+          if (user.username = 'undefined' || ""){
+            user.username = makeUserName();
+          } else {
+            user.username = user.username;
+          }
+          if (currentUserNames.indexOf(user.username) === -1){
+            currentUserNames.push(user.username);
+          } else {
+            $scope.errorMessage = 'That username is already in use. Please choose another one.';
+          }
+          console.log(user.username);
+          socket.emit('entered', user.username);
+        }
 
         function userInZone(){
           //checks if users in location parameters
