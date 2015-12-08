@@ -2,12 +2,18 @@ var mongoose = require('mongoose');
 var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var Schema = mongoose.Schema;
 
+//individual users
+var User = new User({
+  phone: String,
+  hikeId: String
+});
+
+User.plugin(deepPopulate);
+module.exports = mongoose.model('users', User);
+
 //individual comments
 var Comment = new Schema({
-  user: {
-    phone: String,
-    username: String
-  },
+  user: {type: Schema.Types.ObjectId, ref:'users'},
   message: String,
   location: [Number],
   likes: Number

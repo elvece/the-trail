@@ -32,7 +32,7 @@ router.post('/start/session', function(req, res, next){
 //get location from user message
 
 
-//user sends comment to stream
+//user sends comment to hike stream
 router.post('/user/comment', function(req, res, next){
   console.log('im in here');
   console.log(req.body);
@@ -42,7 +42,7 @@ router.post('/user/comment', function(req, res, next){
       username: req.body.username,
       phone: req.body.phone
     },
-    message: req.body.message});//??
+    message: req.body.Body});//??
     console.log('newComment: '+newComment);
 
   Hike.findById(req.body.hikeId, function(err, data){
@@ -71,8 +71,6 @@ router.post('/user/comment', function(req, res, next){
                 // socket.emit('new comment from twilio!');
               }
             });
-
-            // res.json(message);
         }
       });
     }
