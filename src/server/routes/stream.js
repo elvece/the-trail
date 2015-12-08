@@ -34,39 +34,50 @@ router.post('/start/session', function(req, res, next){
 
 //user sends comment to stream
 router.post('/user/comment', function(req, res, next){
-  console.log('im in here')
-  console.log(req.body)
+  console.log('im in here');
+  console.log(req.body);
 
   var newComment= new Comment({
     user: {
       username: req.body.username,
-      phone: req.body.from
+      phone: req.body.phone
     },
-    message: req.body.body});//??
-  console.log('newComment: '+newComment);
+    message: req.body.message});//??
+    console.log('newComment: '+newComment);
 
-  newComment.save(function(err, message){
-     if(err){
+  Hike.findById(req.body.hikeId, function(err, data){
+    if (err){
       res.json(err);
+    } else {
+      var streamId = data.stream[0];
+      newComment.save(function(err, message){
+         if(err){
+          res.json(err);
+        } else {
+            var update = {$push:{comments: newComment}};
+            var options = {new: true};
+
+            Stream.findByIdAndUpdate(streamId, update, options, function(err, data){
+              if (err){
+                res.json(err);
+              }
+              else {
+                // client.messages.create({
+                //   to: user.phone,
+                //   from: '+17203303695',
+                //   body: 'Your comment has been saved to the live stream of this hike!'
+                // });
+                res.json(data);
+                // socket.emit('new comment from twilio!');
+              }
+            });
+
+            // res.json(message);
+        }
+      });
     }
-    var update = {$push:{comments: newComment}};
-    var options = {new: true};
-    //get user info (username and phone) somehow, then use this info to create a new comment, Body is body of message? user needs to be phone user. Once they comment, send this back
-    Stream.findByIdAndUpdate(req.body.streamID, update, options, function(err, user){
-      if (err){
-        res.json(err);
-      }
-      else {
-        client.messages.create({
-          to: user.phone,
-          from: '+17203303695',
-          body: 'Your comment has been saved to the live stream of this hike!'
-        });
-        res.json(newComment);
-        // socket.emit('new comment from twilio!');
-      }
-    });
   });
+
 });
 
 
@@ -76,16 +87,18 @@ router.post('/user/comment', function(req, res, next){
 
 
 
+
+
+// ------------ forget about this for now ------------//
+
 ///// *** STREAM ROUTES *** /////
 
 //post save stream to hike
 router.post('/stream', function(req, res, next) {
-
   var newStream = new Stream({
     users: req.body.users,
     room: req.body.room
   });
-
   newStream.save(function(err, stream){
     if(err){
       res.json(err);
@@ -93,17 +106,15 @@ router.post('/stream', function(req, res, next) {
     else{
       var update = {$push:{comments: newStream}};
       var options = {new: true};
-      Hike.findByIdAndUpdate(req.body.id, update, options, function(err, user){
-          res.json(newStream);
+      Hike.findByIdAndUpdate(req.body.id, update, options, function(err, data){
+        res.json(newStream);
       });
     }
   });
 });
 
 //post save comment to stream
-//old
 router.post('/stream/comment', function(req, res, next) {
-
   var newComment = new Comment({
     user: {
       username: req.body.username,
@@ -132,7 +143,6 @@ router.post('/stream/comment', function(req, res, next) {
 
 //get single stream
 router.get('/stream/:id', function(req, res, next) {
-
   Stream.findById(req.params.id)
     .deepPopulate('comments')
     .exec(function(err, data){

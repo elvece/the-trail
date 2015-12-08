@@ -5,9 +5,11 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
     $scope.hikeId = $routeParams.hikeId;
     $scope.hikeName = $routeParams.hikeName;
 
-    hikeFactory.getHike($scope.hikeId).then(function(data){
-      console.log(data.data)
-      console.log(data.data.comments[0])
-    });
+    hikeFactory.getHike($scope.hikeId)
+      .then(function(data){
+        $scope.hikeComments = data.data.stream[0].comments;
+        $scope.stream = data.data.stream[0]._id;
+        // console.log($scope.stream);
+      });
 }]);
 

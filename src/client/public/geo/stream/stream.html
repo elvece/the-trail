@@ -16,7 +16,9 @@
 
 <div class="stream-box">
   <div class="message-box">
-    <ul id="stream-board" class="stripes"></ul>
+    <ul id="stream-board" ng-repeat="comment in hikeComments"class="stripes">
+      <li>{{comment.user.username}}: {{comment.message}}</li>
+    </ul>
   </div>
 
   <form ng-submit="makeComment()" name="comment">
