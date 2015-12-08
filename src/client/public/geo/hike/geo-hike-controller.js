@@ -9,7 +9,7 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
       .then(function(data){
         $scope.hikeComments = data.data.stream[0].comments;
         $scope.stream = data.data.stream[0]._id;
-        // console.log($scope.stream);
+        // console.log(data);
       });
 }]);
 

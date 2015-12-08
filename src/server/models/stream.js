@@ -3,25 +3,19 @@ var deepPopulate = require("mongoose-deep-populate")(mongoose);
 var Schema = mongoose.Schema;
 
 //individual users
-var User = new User({
+var User = new Schema({
+  username: String,
   phone: String,
   hikeId: String
 });
 
-User.plugin(deepPopulate);
-module.exports = mongoose.model('users', User);
-
 //individual comments
 var Comment = new Schema({
-  user: {type: Schema.Types.ObjectId, ref:'users'},
+  user: [{type: Schema.Types.ObjectId, ref:'users'}],
   message: String,
   location: [Number],
   likes: Number
 });
-
-//registers plugin
-Comment.plugin(deepPopulate);
-module.exports = mongoose.model('comments', Comment);
 
 //entire stream
 var Stream = new Schema({
@@ -30,5 +24,12 @@ var Stream = new Schema({
   comments: [{type: Schema.Types.ObjectId, ref:'comments'}]
 });
 
+//registers plugin
+User.plugin(deepPopulate);
+Comment.plugin(deepPopulate);
 Stream.plugin(deepPopulate);
+
+//refactor later, not doing object because routes already set up for this use case
+module.exports = mongoose.model('users', User);
+module.exports = mongoose.model('comments', Comment);
 module.exports = mongoose.model('streams', Stream);

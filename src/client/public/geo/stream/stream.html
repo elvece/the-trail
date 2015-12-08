@@ -17,7 +17,7 @@
 <div class="stream-box">
   <div class="message-box">
     <ul id="stream-board" ng-repeat="comment in hikeComments"class="stripes">
-      <li>{{comment.user.username}}: {{comment.message}}</li>
+      <li>{{comment.user[0].username}}: {{comment.message}}</li>
     </ul>
   </div>
 

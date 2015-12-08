@@ -4,15 +4,13 @@ angular.module('directives')
       restrict: 'E',
       templateUrl: 'geo/stream/stream.html',
       controller: function($scope, streamFactory, hikeFactory){
-        console.log($scope.hikeId)
+
         //leave localhost direct connection for local development, take out for heroku
         //'http://localhost:3000'
         var socket = io.connect('http://localhost:3000');
         //to populate view
         var streamBoard = angular.element(document.querySelector('#stream-board'));
         var currentUsers = angular.element(document.querySelector('#current-users'));
-        //hard coded to start, will need to be dynamic based on hike currently displayed
-        var streamID = $scope.stream;
         var userID = 0;
         var currentUserNames = [];
         //array of people who have entered their numbers for access
@@ -20,18 +18,18 @@ angular.module('directives')
         //user constructor
         function User(username, phone){
           this.username = username;
-          this.phone = phone;
+          this.phone = '+1'+phone;
+          this.hikeId = $scope.hikeId;
         }
 
         //start session by sending text to user
         $scope.startSession = function(){
           var newUser = new User($scope.userNameInput, $scope.phoneNumberInput);
+          console.log(newUser)
           currentUsersInfo.push(newUser);
-          console.log(newUser);
-          console.log(currentUsersInfo);
 
           var message_init = 'Thanks '+newUser.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(newUser.phone, message_init)
+          streamFactory.startText(newUser.username, newUser.phone, message_init, newUser.hikeId)
             .then(function(data){
               console.log(data);
               socket.emit('entered', newUser.username);
@@ -116,7 +114,7 @@ angular.module('directives')
         //append comment after hitting socket
         socket.on('comment-received', function(message){
           console.log(message);
-          streamBoard.append('<li>' +message.user+ ': '+message.message+'</li>');
+          streamBoard.append('<li>' +message.user.username+ ': '+message.message+'</li>');
         });
 
         socket.on('current-users', function(users){

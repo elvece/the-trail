@@ -7,19 +7,18 @@ streamService.$inject = ['$http'];
     var service = {
       getStream: getStream,
       saveComment: saveComment,
-      saveStream: saveStream,
       startText: startText
     };
     return service;
 
-      function getStream(streamID){
+      function getStream(streamId){
         return $http({
           method: 'GET',
-          url: '/geo-share/stream/' + streamID
+          url: '/geo-share/stream/' + streamId
         });
       }
 
-      function saveComment(phone, username, message, location, streamID){
+      function saveComment(username, phone, message, location, hikeId){
         return $http({
           method: 'POST',
           url: '/geo-share/user/comment',
@@ -27,31 +26,21 @@ streamService.$inject = ['$http'];
                   username: username,
                   phone: phone,
                   message: message,
-                  streamID: streamID,
+                  hikeId: hikeId,
                   location: location
                 }
         });
       }
 
-      function saveStream(users, room, hikeID){
-        return $http({
-          method: 'POST',
-          url: '/geo-share/stream',
-          data: {
-                  users: users,
-                  room: room,
-                  id: hikeID
-                }
-        });
-      }
-
-      function startText(phone, message){
+      function startText(username, phone, message, hikeId){
         return $http({
           method: 'POST',
           url: '/geo-share/start/session',
           data: {
+                  username: username,
                   phone: phone,
-                  message: message
+                  message: message,
+                  hikeId: hikeId
                 }
         });
       }

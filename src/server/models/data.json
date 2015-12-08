@@ -1,21 +1,23 @@
 
 {
+  "user": {
+    "_model": "users",
+    "user_1": {
+      "username": "lucy",
+      "phone": "1234567890",
+      "hikeId": "123"
+    }
+  },
   "comments": {
     "_model": "comments",
     "hike_1_comment_1": {
-      "user": {
-        "phone": "1234567890",
-        "username": "testUserName"
-      },
+      "user": ["->user.user_1"],
       "message": "Test message",
       "location": ["39.0708", "-106.9890"],
       "likes": "1"
     },
     "hike_1_comment_2": {
-      "user": {
-        "phone": "0987654321",
-        "username": "anotherUserName"
-      },
+      "user": ["->user.user_1"],
       "message": "Another test message",
       "location": ["39.0708", "-106.9890"],
       "likes": "2"
