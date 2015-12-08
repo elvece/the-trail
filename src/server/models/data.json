@@ -32,7 +32,7 @@
   "hikes": {
     "_model": "hikes",
     "hike_1": {
-      "adming_id": "1",
+      "admin_id": "1",
       "name": "Maroon Creek Trail",
       "location": "Maroon Bells, Aspen, CO",
       "area": "5",
