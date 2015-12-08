@@ -6,6 +6,7 @@ var Comment = mongoose.model('comments');
 var Stream = mongoose.model('streams');
 var Hike = mongoose.model('hikes');
 var deepPopulate = require("mongoose-deep-populate")(mongoose);
+// var io = require('../app');
 
 //twilio
 var config = require('../../../config');
@@ -87,11 +88,11 @@ router.post('/user/comment', function(req, res, next){
                       body: 'Your comment has been saved to the live stream of this hike!'
                     });
                     res.json(data);
-                    // socket.emit('new comment from twilio!');
                   }
                 });
             }
           });
+          // io.socket.emit('new comment from twilio!');
         }
       });
     }

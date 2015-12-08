@@ -3,8 +3,16 @@ body {
   margin-top: 50px; /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
+.alert {
+  display: none;
+}
+
 .text-center {
   text-align: center;
+}
+
+.bold {
+  font-style: bold;
 }
 
 .image-bg-fluid-height,
@@ -132,14 +140,6 @@ h4 {
   }
 }
 
-.current-user-box{
-  width: 100%;
-  height: 200px;
-  border: 2px solid black;
-  overflow-y:auto;
-  background: #ccc;
-}
-
 .center {
   text-align: center;
 }
@@ -154,4 +154,52 @@ h4 {
 
 }
 
+.map {
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+};
+
+.chat-bubble {
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 18px;
+  position: relative;
+  margin: 10px;
+  max-width: 80%;
+}
+
+.chat-bubble:before {
+  content: "\00a0";
+  display: block;
+  height: 16px;
+  width: 9px;
+  position: absolute;
+  bottom: -7.5px;
+}
+
+.chat-bubble.left {
+  background-color: #e6e5eb;
+  float: left;
+  margin-left: 55px;
+}
+
+.chat-bubble.left:before {
+  background-color: #e6e5eb;
+  left: 10px;
+  -webkit-transform: rotate(70deg) skew(5deg);
+}
+
+.chat-bubble.right {
+  background-color: #158ffe;
+  color: #fff;
+  float: right;
+  margin-right: 55px;
+}
+
+.chat-bubble.right:before {
+  background-color: #158ffe;
+  right: 10px;
+  -webkit-transform: rotate(118deg) skew(-5deg);
+}
 

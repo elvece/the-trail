@@ -1,14 +1,12 @@
 
-<h1>Hike Stream</h1>
-
-<!-- make class display none and set timeout for message disapper -->
+<!-- set timeout for message disapper -->
 <div class="alert alert-warning" role="alert" class="error-message" ng-model="errorMessage"></div>
 
-<p>Enter your phone number to start posting on the trail!</p>
+<p class="lead">Enter your phone number to start posting on the trail!</p>
 <form ng-submit="startSession()" name="userInfo">
-  <label>Phone Number: </label>
+  <label>Phone Number:&nbsp;&nbsp;</label>
   <input type="text" ng-model="phoneNumberInput" class="" autocomplete="off" placeholder="eg: 3034567899" required>
-  <label>Username: </label>
+  <label>Username:&nbsp;&nbsp;</label>
   <input type="text" ng-model="userNameInput" class="" autocomplete="on" placeholder="please be nice" required>
   <button ng-disabled="userInfo.$invalid" class="btn btn-warning">Join the Trail</button>
 </form>
@@ -16,19 +14,16 @@
 
 <div class="stream-box">
   <div class="message-box">
-    <ul id="stream-board" ng-repeat="comment in hikeComments"class="stripes">
-      <li>{{comment.user[0].username}}: {{comment.message}}</li>
+    <ul id="stream-board" class="">
+<!--       <li class="chat-bubble left" ng-repeat="comment in hikeComments">{{comment.user[0].username}}: {{comment.message}}</li> -->
+      <li class="chat-bubble left">test: test</li>
+      <li class="chat-bubble right">test: test</li>
     </ul>
   </div>
 
-  <form ng-submit="makeComment()" name="comment">
+<!--   <form ng-submit="makeComment()" name="comment">
     <input type="text" ng-model="commentInput" class="comment-input" autocomplete="off" required>
     <button ng-disabled="comment.$invalid" class="btn btn-default">Send</button>
-  </form>
+  </form> -->
 </div>
 
-<br>
-<div class="current-user-box">
-  <h4 class="center">current users</h4>
-  <ul id="current-users"></ul>
-</div>

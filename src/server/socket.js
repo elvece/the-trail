@@ -22,7 +22,6 @@ module.exports = function(io) {
       io.to(socket.room).emit('current-users', users);
     });
 
-
     // //message to stream
     socket.on('comment-sent', function(message){
       io.to(socket.room).emit('comment-received', {
@@ -30,6 +29,11 @@ module.exports = function(io) {
         user: socket.user
         // location: location
       });
+    });
+
+    //sends location data
+    socket.on('location', function (data) {
+      io.sockets.emit('location', data);
     });
 
   });

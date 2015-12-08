@@ -1,12 +1,13 @@
 angular.module('directives')
-  .directive('liveStream', ['streamFactory', 'hikeFactory', function(streamFactory){
+  .directive('liveStream', ['streamFactory', function(streamFactory){
     return {
       restrict: 'E',
       templateUrl: 'geo/stream/stream.html',
-      controller: function($scope, streamFactory, hikeFactory){
+      controller: function($scope, streamFactory){
 
-        //leave localhost direct connection for local development, take out for heroku
-        //'http://localhost:3000'
+        ///// *** GLOBALS *** /////
+
+        //for local: 'http://localhost:3000', remove for heroku
         var socket = io.connect('http://localhost:3000');
         //to populate view
         var streamBoard = angular.element(document.querySelector('#stream-board'));
@@ -15,12 +16,9 @@ angular.module('directives')
         var currentUserNames = [];
         //array of people who have entered their numbers for access
         var currentUsersInfo = [];
-        //user constructor
-        function User(username, phone){
-          this.username = username;
-          this.phone = '+1'+phone;
-          this.hikeId = $scope.hikeId;
-        }
+
+
+        ///// *** START USER SESSION *** /////
 
         //start session by sending text to user
         $scope.startSession = function(){
@@ -45,6 +43,22 @@ angular.module('directives')
         };
 
         ////// *** HELPER FUNCTIONS *** //////
+
+        //user constructor
+        function User(username, phone){
+          // this.id = guid();
+          this.username = username;
+          this.phone = '+1'+phone;
+          this.hikeId = $scope.hikeId;
+        }
+
+        //geo uniquie id
+        function guid() {
+          function s4() { return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16).substring(1);
+          }
+          return s4() + s4() + '-' + s4() + '-' + s4() + s4();
+        }
 
         // function displayStream(){
         //   streamBoard.empty();
