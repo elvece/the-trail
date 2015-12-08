@@ -112,7 +112,7 @@ h4 {
 
 .stream-box {
   width: 100%;
-  height: 650px;
+  height: 600px;
   border: 2px solid black;
   background-color: #ccc;
 }
@@ -154,10 +154,15 @@ h4 {
 
 }
 
-.map {
+.map-box {
   border: 1px solid black;
-  height: 500px;
-  width: 500px;
+  height: 600px;
+  width: 600px;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
 };
 
 .chat-bubble {
