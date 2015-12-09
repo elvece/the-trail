@@ -140,7 +140,8 @@ angular.module('directives')
             streamFactory.saveCommentFromSite(user.username, user.phone, newComment, userLocation, user.hikeId)
               .then(function(data){
                 console.log(data);
-                socket.emit('comment-sent', newComment);
+                socket.emit('comment-sent', newComment, userLocation);
+                //generate marker event
               });
             $scope.commentInput = "";
           };

@@ -22,11 +22,11 @@ module.exports = function(io) {
     });
 
     // //message to stream
-    socket.on('comment-sent', function(message){
+    socket.on('comment-sent', function(message, location){
       io.to(socket.room).emit('comment-received', {
         message: message,
-        user: socket.user
-        // location: location
+        user: socket.user,
+        location: location
       });
     });
 
