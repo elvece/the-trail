@@ -35,23 +35,7 @@ angular.module('directives')
               markers: [],
               events: {}
             };
-            $scope.marker = {
-              id: Date.now(),
-              coords: {
-                latitude: 39.0708,///location of current user location
-                longitude: -106.989
-              },
-              showWindow: false,
-              options: {
-                animation: 2,
-                title: 'Home',
-                labelContent: $scope.hikeName,
-                labelClass: "marker-labels"
-              }
-            };
 
-          $scope.map.markers.push($scope.marker);
-          console.log($scope.map.markers)
          //  $scope.map.markersEvents = {
          //    mouseover: function (marker, eventName, model, args) {
          //      model.options.labelContent = "Position - lat: " + model.latitude + " lon: " + model.longitude;
@@ -135,6 +119,24 @@ angular.module('directives')
                 $scope.userPosition.coords.latitude,
                 $scope.userPosition.coords.longitude
               ];
+            $scope.marker = {
+              id: Date.now(),
+              coords: {
+                latitude: userLocation[0],///location of current user location
+                longitude: userLocation[1]
+              },
+              showWindow: false,
+              options: {
+                animation: 2,
+                title: 'Home',
+                labelContent: $scope.hikeName,
+                labelClass: "marker-labels"
+              }
+            };
+
+          $scope.map.markers.push($scope.marker);
+          console.log($scope.map.markers)
+
             streamFactory.saveCommentFromSite(user.username, user.phone, newComment, userLocation, user.hikeId)
               .then(function(data){
                 console.log(data);
