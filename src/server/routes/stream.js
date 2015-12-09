@@ -61,7 +61,8 @@ router.post('/user/comment', function(req, res, next){
       console.log(user);
       var newComment = new Comment({
         user: user,
-        message: req.body.message
+        message: req.body.message,
+        location: req.body.location
       });
       console.log('new comment: ');
       console.log(newComment);

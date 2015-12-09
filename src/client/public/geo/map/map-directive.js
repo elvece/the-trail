@@ -1,5 +1,5 @@
 angular.module('directives')
-  .directive('mapDisplay', ['$geolocation','mapFactory','streamFactory', function(geolocation, mapFactory, streamFactory, $geolocation){
+  .directive('mapDisplay', ['$geolocation','mapFactory','streamFactory', function($geolocation, mapFactory, streamFactory){
     return {
       restrict: 'E',
       templateUrl: 'geo/map/map.html',

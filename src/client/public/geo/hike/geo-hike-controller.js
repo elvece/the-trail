@@ -8,9 +8,13 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
 
     hikeFactory.getHike($scope.hikeId)
       .then(function(data){
+        $scope.coordinates = {
+            latitude: data.data.map[0],
+            longitude: data.data.map[1]
+        };
         $scope.hikeComments = data.data.stream[0].comments;
         $scope.stream = data.data.stream[0]._id;
-        // console.log(data);
+        console.log(data);
         $scope.room = data.data.stream[0].room;
         socket.emit('init', $scope.room);
       });
