@@ -1,4 +1,4 @@
-angular.module('myApp', ['uiGmapgoogle-maps','ngGeolocation','routes', 'directives', 'factories'])
+angular.module('myApp', ['ngMap','ngGeolocation','routes', 'directives', 'factories'])
   .run(function ($rootScope) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         // $rootScope.title = current.$$route.title;
