@@ -5,6 +5,8 @@ angular.module('directives')
       templateUrl: 'geo/map/map.html',
       controller: function($scope, mapFactory, streamFactory, $window){
 
+            $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
             // User Infomation
             var currentUserInfo = null;
             var users = {};

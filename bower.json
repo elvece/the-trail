@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-google-maps": "~2.2.1"
+    "angular-google-maps": "~2.2.1",
+    "ngGeolocation": "~0.0.8"
   }
 }
