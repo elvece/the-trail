@@ -2,7 +2,7 @@ var app = angular.module('myApp');
 
 app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', function($scope, $routeParams, hikeFactory){
 
-    var socket = io.connect('http://localhost:3000');
+    var socket = io.connect();
     $scope.hikeId = $routeParams.hikeId;
     $scope.hikeName = $routeParams.hikeName;
 
