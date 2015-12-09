@@ -4,3 +4,5 @@ npm-debug.log
 notes.md
 *.env
 _env.sh
+src/client/public/bower_components/
+
