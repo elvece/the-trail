@@ -21,6 +21,18 @@
       "message": "Another test message",
       "location": ["39.0708", "-106.9890"],
       "likes": "2"
+    },
+    "hike_1_comment_3": {
+      "user": ["->user.user_1"],
+      "message": "Another test message",
+      "location": ["39.0708", "-106.9890"],
+      "likes": "2"
+    },
+    "hike_1_comment_4": {
+      "user": ["->user.user_1"],
+      "message": "Another test message",
+      "location": ["39.0708", "-106.9890"],
+      "likes": "2"
     }
   },
   "streams": {
