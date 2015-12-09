@@ -26,7 +26,7 @@
           <info-window ng-repeat="info in mapMarkers" id="{{info.windowId}}" visible-on-marker="{{info.id}}">
             <div ng-non-bindable>
               <div id="siteNotice"></div>
-              <h3 id="firstHeading" class="firstHeading">{{info.user.username}}</h3>
+              <h5 id="firstHeading" class="firstHeading">{{info.user.username}}</h5>
               <div id="bodyContent">
                 <p>{{info.message}}</p>
               </div>
@@ -40,7 +40,7 @@
           <info-window ng-repeat="comment in hikeComments" id="{{comment.user._id}}" visible-on-marker="{{comment._id}}">
             <div ng-non-bindable>
               <div id="siteNotice"></div>
-              <h3 id="firstHeading" class="firstHeading">{{comment.user[0].username}}</h3>
+              <h5 id="firstHeading" class="firstHeading">{{comment.user[0].username}}</h5>
               <div id="bodyContent">
                 <p>{{comment.message}}</p>
               </div>
