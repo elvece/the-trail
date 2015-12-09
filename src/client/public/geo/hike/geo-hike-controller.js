@@ -14,7 +14,7 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
         };
         $scope.hikeComments = data.data.stream[0].comments;
         $scope.stream = data.data.stream[0]._id;
-        console.log(data);
+        // console.log(data);
         $scope.room = data.data.stream[0].room;
         socket.emit('init', $scope.room);
       });

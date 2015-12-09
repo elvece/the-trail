@@ -1,9 +1,9 @@
 angular.module('directives')
-  .directive('geoStream', ['$geolocation','streamFactory', function($geolocation, streamFactory){
+  .directive('geoStream', ['$geolocation','streamFactory', 'NgMap', function($geolocation, streamFactory, NgMap){
     return {
       restrict: 'E',
       templateUrl: 'geo/stream/stream.html',
-      controller: function($geolocation, $scope, streamFactory){
+      controller: function($geolocation, $scope, streamFactory, NgMap){
 
         ///// *** GLOBALS *** /////
 
@@ -11,44 +11,32 @@ angular.module('directives')
         var socket = io.connect('http://localhost:3000');
         //to populate view
         var streamBoard = angular.element(document.querySelector('#stream-board'));
+        var mapDiv = angular.element(document.querySelector('#map'));
         var userID = 0;
+        var commentId = 0;
+        var windowId = 0;
         //array of current user names so no duplicates
         var currentUserNames = [];
         //array of people who have entered their numbers for access
         var currentUsersInfo = [];
+        //map marker locations
+        $scope.mapMarkers = [];
+
+
+        ///// *** GOOGLE MAP *** /////
+
+          NgMap.getMap().then(function(map) {
+            $scope.map = map;
+            console.log('markers', map.markers);
+          });
 
 
         ///// *** GEOLOCATION *** /////
-
-        $scope.options = {scrollwheel: false};
 
         $geolocation.getCurrentPosition({
             timeout: 60000
          }).then(function(position) {
             $scope.userPosition = position;
-            $scope.map = {
-              center: {
-                latitude: $scope.coordinates.latitude,//location of current hike
-                longitude: $scope.coordinates.longitude
-              },
-              zoom: 10,
-              markers: [],
-              events: {}
-            };
-
-         //  $scope.map.markersEvents = {
-         //    mouseover: function (marker, eventName, model, args) {
-         //      model.options.labelContent = "Position - lat: " + model.latitude + " lon: " + model.longitude;
-         //      model.showWindow = true;
-         //      $scope.$apply();
-         //    },
-         //    mouseout: function (marker, eventName, model, args) {
-         //      model.options.labelContent = " ";
-         //      model.showWindow = false;
-         //      $scope.$apply();
-         //    }
-         //  };
-
 
 
           ///// *** START USER SESSION *** /////
@@ -105,42 +93,45 @@ angular.module('directives')
             return generatedUserName;
           }
 
+          //generates comment data with unique id's for map marker population
+          function makeCommentData(){
+            commentId++;
+            windowId++;
+            var newComment = {
+              id: commentId,
+              windowId: 'w'+windowId,
+              message: $scope.commentInput,
+              user: currentUsersInfo[0],
+              location: [
+                $scope.userPosition.coords.latitude,
+                $scope.userPosition.coords.longitude
+              ]
+            };
+            return newComment;
+          }
+
           ////// *** SOCKET REQUESTS *** //////
 
           //comments on web will only be to other users; web users can only like comments, but not post because not in location. have to target @user to send them a question
 
          //make comment to hike stream
           $scope.makeComment = function(){
-            var newComment = $scope.commentInput;
-            console.log(currentUsersInfo)
-            var user = currentUsersInfo[0];
-            console.log(user)
-            var userLocation = [
-                $scope.userPosition.coords.latitude,
-                $scope.userPosition.coords.longitude
-              ];
-            $scope.marker = {
-              id: Date.now(),
-              coords: {
-                latitude: userLocation[0],///location of current user location
-                longitude: userLocation[1]
-              },
-              showWindow: false,
-              options: {
-                animation: 2,
-                title: 'Home',
-                labelContent: $scope.hikeName,
-                labelClass: "marker-labels"
-              }
+            var newComment = makeCommentData();
+            $scope.mapMarkers.push(newComment);
+            console.log($scope.mapMarkers)
+            $scope.commentId = newComment.id;
+            $scope.commentLocation = {
+              latitude: location[0],
+              longitude: newComment.location[1]
             };
+            $scope.windowId = newComment.windowId;
+            $scope.commentUsername = newComment.user.username;
+            $scope.commentMessage = newComment.message;
 
-          $scope.map.markers.push($scope.marker);
-          console.log($scope.map.markers)
-
-            streamFactory.saveCommentFromSite(user.username, user.phone, newComment, userLocation, user.hikeId)
+            streamFactory.saveCommentFromSite(newComment.user.username, newComment.user.phone, newComment.message, newComment.location, newComment.user.hikeId)
               .then(function(data){
                 console.log(data);
-                socket.emit('comment-sent', newComment, userLocation);
+                socket.emit('comment-sent', newComment.message, newComment.location);
                 //generate marker event
               });
             $scope.commentInput = "";
