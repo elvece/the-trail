@@ -17,9 +17,8 @@ module.exports = function(io) {
       }
       // console.log(users);
       socket.user = user;
-      // console.log(socket.room)
-      // console.log(socket.user)
-      io.to(socket.room).emit('current-users', users);
+      console.log(socket.room)
+      console.log(socket.user)
     });
 
     // //message to stream

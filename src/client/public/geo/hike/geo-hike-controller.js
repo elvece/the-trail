@@ -2,6 +2,7 @@ var app = angular.module('myApp');
 
 app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', function($scope, $routeParams, hikeFactory){
 
+    var socket = io.connect('http://localhost:3000');
     $scope.hikeId = $routeParams.hikeId;
     $scope.hikeName = $routeParams.hikeName;
 
@@ -10,6 +11,8 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
         $scope.hikeComments = data.data.stream[0].comments;
         $scope.stream = data.data.stream[0]._id;
         // console.log(data);
+        $scope.room = data.data.stream[0].room;
+        socket.emit('init', $scope.room);
       });
 }]);
 

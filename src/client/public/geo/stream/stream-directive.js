@@ -109,24 +109,18 @@ angular.module('directives')
           console.log(currentUsersInfo)
           var user = currentUsersInfo[0];
           console.log(user)
-          streamFactory.saveCommentFromSite(user.username, user.phone, newComment, $scope.userPosition, user.hikeId);
-          socket.emit('comment-sent', newComment);
+          streamFactory.saveCommentFromSite(user.username, user.phone, newComment, $scope.userPosition, user.hikeId)
+            .then(function(data){
+              console.log(data);
+              socket.emit('comment-sent', newComment);
+            });
           $scope.commentInput = "";
         };
 
         //append comment after hitting socket
         socket.on('comment-received', function(message){
           console.log(message);
-          streamBoard.append('<li>' +message.user.username+ ': '+message.message+'</li>');
-        });
-
-        socket.on('current-users', function(users){
-          //populate currentUsers list
-          console.log(users)
-          currentUsers.empty();
-          for (var i = 0; i < users.length; i++) {
-            currentUsers.append('<li>'+users[i]+'</li>');
-          }
+          streamBoard.append('<li>' +message.user+ ': '+message.message+'</li>');
         });
 
       }//end controller
