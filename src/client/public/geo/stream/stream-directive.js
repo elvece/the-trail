@@ -27,8 +27,14 @@ angular.module('directives')
 
           NgMap.getMap().then(function(map) {
             $scope.map = map;
-            // console.log('markers', map.markers);
+            // map.markers = $scope.hikeComments;
+              // for (var i=0; i<1000; i++) {
+              //   var latLng = new google.maps.LatLng($scope.hikeComments[i].position[0], $scope.hikeComments[i].position[1]);
+              //   $scope.hikeComments.push(new google.maps.Marker({position:latLng}));
+              // }
+              // markerClusterer = new MarkerClusterer(map, $scope.hikeComments, {});
           });
+
 
 
         ///// *** GEOLOCATION *** /////

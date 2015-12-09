@@ -27,7 +27,32 @@
     "_model": "streams",
     "hike_1_stream": {
       "room": "Maroon Bells",
-      "users": ["Test"],
+      "users": ["Trailblazer"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    },
+    "hike_2_stream": {
+      "room": "Arches",
+      "users": ["Trailblazer"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    },
+    "hike_3_stream": {
+      "room": "Red Feather Lakes",
+      "users": ["Trailblazer"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    },
+    "hike_4_stream": {
+      "room": "The Loch",
+      "users": ["Trailblazer"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    },
+    "hike_5_stream": {
+      "room": "Deer Mountain",
+      "users": ["Trailblazer"],
+      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+    },
+    "hike_6_stream": {
+      "room": "Galvanize",
+      "users": ["Trailblazer"],
       "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
     }
   },
@@ -35,21 +60,95 @@
     "_model": "hikes",
     "hike_1": {
       "admin_id": "1",
-      "name": "Maroon Creek Trail",
+      "name": "West Maroon Creek Trail",
       "location": "Maroon Bells, Aspen, CO",
       "area": "5",
       "distance": "3.2",
       "duration": "2.5",
-      "difficulty": "2,5",
-      "feature": ["Lake"],
-      "file": {
-        "name": "Maroon Bells",
-        "bin": "https://cdn.photographylife.com/wp-content/uploads/2010/11/Sunrise-at-Maroon-Bells.jpg"
-        },
+      "difficulty": "2.5",
+      "features": ["Lake"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/DSC_0833-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/DSC_0807-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/DSC_0819-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/DSC_0860-min.jpg"],
       "map": ["39.0708", "-106.9890"],
-      "info": "Information to be entered about this trail.",
+      "info": "The West Maroon Creek Trail rises steadily between iconic peaks into the capacious upper valley, where grades steepen on a ramp-like path etched in the west wall to the pass. The trail begins on the north side of Maroon Lake to the Scenic Loop split (.3 miles). It rises away into thick aspens that break across an open rock field on the valley floor (1.2 miles : 10,070’). Pick your way through talus to a crest, and drop to the Maroon Snowmass – West Maroon Creek Trail split (1.7 miles : 10,110’). Bear left and level up the west side of Crater Lake to the first group of campsites on the far end (2.0 miles : 10,110’). The trail bends S-SW over the inlet and undulates across rockslides at the base of Maroon Bells, with high points offering great views back at Crater Lake and Pyramid Peak (3.0 miles : 10,295’). It moves quickly up valley under the Len Shoemaker Ridge and crosses east over West Maroon Creek (3.65 miles : 10,515’). Water can be swift during peak runoff, but is generally not an obstacle. The trail rises steadily before clearing the balance of treeline with your first full view of the red-hued headwall and pass in the SW corner (4.45 miles : 10,880’). It crosses West Maroon Creek back to the west side (4.5 miles : 10,905'), weaving through tall willow patches and flower-filled glades. Scan the upper valley for wildlife as you progress – you’ll likely see anything that moves in this big, open space. Travel steepens in short intervals through 5.45 (11,525’) miles into an idyllic landscape under the pass. Views are astonishing as it climbs 945’ in the last mile on a ramp-like trail to West Maroon Pass (6.45 miles : 12,465’). Be mindful of footing on this narrow, potentially unstable approach. The pass spans a small notch in the SW corner of the headwall with exceptional views across West Maroon Creek valley, and down East Fork drainage on the Crested Butte side. Expect crowds on the pass, since many hikers are generally traveling on the same time schedule.",
       "likes": "2",
       "stream": ["->streams.hike_1_stream"]
     }
+  },
+
+    "hike_2": {
+      "admin_id": "2",
+      "name": "Royal Arch Trail",
+      "location": "Arches National Park, Moab, UT",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2.5",
+      "features": ["Red rocks", "Natural arches"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/DSC_0128-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/DSC_0066-min.jpg"],
+      "map": ["39.0708", "-106.9890"],
+      "info": "Information to be entered about this trail.",
+      "likes": "2",
+      "stream": ["->streams.hike_2_stream"]
+    },
+    "hike_3": {
+      "admin_id": "3",
+      "name": "Red Feather Lakes",
+      "location": "Fort Collins, CO",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2.5",
+      "features": ["Lakes", "StoneScapes"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/IMG_0036-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/IMG_2247-min.jpg"],
+      "map": ["39.0708", "-106.9890"],
+      "info": "Information to be entered about this trail.",
+      "likes": "2",
+      "stream": ["->streams.hike_3_stream"]
+    },
+    "hike_4": {
+      "admin_id": "4",
+      "name": "The Loch",
+      "location": "Rocky Mountain National Park, Estes Park, CO",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2.5",
+      "features": ["Lake", "Views"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/IMG_3136-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/IMG_3054-min.jpg"],
+      "map": ["39.0708", "-106.9890"],
+      "info": "Information to be entered about this trail.",
+      "likes": "2",
+      "stream": ["->streams.hike_4_stream"]
+    },
+    "hike_5": {
+      "admin_id": "5",
+      "name": "Deer Mountain",
+      "location": "Rocky Mountain National Park, Estes Park, CO",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2.5",
+      "features": ["Wildlife", "Panoramic Views"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/IMG_2822-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/IMG_2826-min.jpg"],
+      "map": ["39.0708", "-106.9890"],
+      "info": "Information to be entered about this trail.",
+      "likes": "2",
+      "stream": ["->streams.hike_5_stream"]
+    },
+    "hike_6": {
+      "admin_id": "5",
+      "name": "Galvanize",
+      "location": "Denver, CO",
+      "area": "5",
+      "distance": "3.2",
+      "duration": "2.5",
+      "difficulty": "2.5",
+      "features": ["Bar", "Shared work space"],
+      "images": ["https://s3-us-west-2.amazonaws.com/the-trail/Galvanize-min.jpg", "https://s3-us-west-2.amazonaws.com/the-trail/galvanize-denver-cafe-min.jpg"],
+      "map": ["39.733934", "-104.992593"],
+      "info": "Mission: We believe in making education and growth accessible to anyone – especially underrepresented groups in the tech industry. Whether you’re a founder, student, or just someone who wants to level up their career, we want Galvanize to be a welcoming, inclusive place where you can take the next step in your journey.",
+      "likes": "2",
+      "stream": ["->streams.hike_6_stream"]
+    }
   }
-}
+

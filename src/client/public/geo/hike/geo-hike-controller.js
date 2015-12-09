@@ -13,7 +13,7 @@ app.controller('geoHikeController', ['$scope', '$routeParams', 'hikeFactory', fu
             longitude: data.data.map[1]
         };
         $scope.hikeComments = data.data.stream[0].comments;
-        console.log($scope.hikeComments)
+        // console.log($scope.hikeComments)
         $scope.stream = data.data.stream[0]._id;
         // console.log(data);
         $scope.room = data.data.stream[0].room;

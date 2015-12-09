@@ -11,8 +11,8 @@ var Hike = new Schema(
     distance_miles: Number ,
     duration_hours: Number,
     difficulity: Number,
-    feature: [String],
-    file: {name: String, bin: Buffer},
+    features: [String],
+    images:[String],
     map: [Number],
     info: String,
     stream: [{type: Schema.Types.ObjectId, ref:'streams'}],
@@ -23,3 +23,4 @@ var Hike = new Schema(
 Hike.plugin(deepPopulate);
 module.exports = mongoose.model('hikes', Hike);
 
+// file: {name: String, bin: Buffer},
