@@ -47,8 +47,55 @@ router.post('/start/session', function(req, res, next){
 //get location from user message
 
 
-//user sends comment to hike stream
+//user sends comment to hike stream from site
 router.post('/user/comment', function(req, res, next){
+  console.log('body: ');
+  console.log(req.body);
+
+  User.findOne({phone: req.body.phone}, function(err, data){
+    if (err){
+      res.json(err);
+    } else {
+      var user = data;
+      console.log('user: ');
+      console.log(user);
+      var newComment = new Comment({
+        user: user,
+        message: req.body.message
+      });
+      console.log('new comment: ');
+      console.log(newComment);
+      Hike.findById(user.hikeId, function(err, data){
+        if (err){
+          res.json(err);
+        } else {
+          var streamId = data.stream[0];
+          newComment.save(function(err, message){
+             if(err){
+              res.json(err);
+            } else {
+                var update = {$push:{comments: newComment}};
+                var options = {new: true};
+
+                Stream.findByIdAndUpdate(streamId, update, options, function(err, data){
+                  if (err){
+                    res.json(err);
+                  }
+                  else {
+                    res.json(data);
+                  }
+                });
+            }
+          });
+          // io.socket.emit('new comment from twilio!');
+        }
+      });
+    }
+  });
+});
+
+//user sends comment to hike stream from phone
+router.post('/user/phone/comment', function(req, res, next){
   console.log('twilio body: ');
   console.log(req.body);
 

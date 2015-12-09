@@ -9,11 +9,11 @@ angular.module('directives')
         $geolocation.getCurrentPosition({
             timeout: 60000
          }).then(function(position) {
-            $scope.myPosition = position;
+            $scope.userPosition = position;
             $scope.map = {
               center: {
-                latitude: $scope.myPosition.coords.latitude,
-                longitude: $scope.myPosition.coords.longitude
+                latitude: $scope.userPosition.coords.latitude,//location of current hike
+                longitude: $scope.userPosition.coords.longitude
               },
               zoom: 17,
               markers: [],
@@ -22,7 +22,7 @@ angular.module('directives')
             $scope.marker = {
               id: Date.now(),
               coords: {
-                latitude: 39.734528,
+                latitude: 39.734528,///location of current user location
                 longitude: -104.975450
               },
               showWindow: false,

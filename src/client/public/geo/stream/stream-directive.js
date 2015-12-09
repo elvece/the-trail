@@ -26,7 +26,7 @@ angular.module('directives')
           console.log(newUser)
           currentUsersInfo.push(newUser);
 
-          var message_init = 'Thanks '+newUser.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
+          var message_init = 'Thanks '+newUser.username+' for joining The Trail. You can now start live streaming on site.';
           streamFactory.startSession(newUser.username, newUser.phone, message_init, newUser.hikeId)
             .then(function(data){
               console.log(data);
@@ -46,13 +46,6 @@ angular.module('directives')
           this.hikeId = $scope.hikeId;
         }
 
-        //geo uniquie id
-        function guid() {
-          function s4() { return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16).substring(1);
-          }
-          return s4() + s4() + '-' + s4() + '-' + s4() + s4();
-        }
 
         // function displayStream(){
         //   streamBoard.empty();
@@ -110,13 +103,15 @@ angular.module('directives')
 
         //comments on web will only be to other users; web users can only like comments, but not post because not in location. have to target @user to send them a question
 
-       //make comment to hike stream - really this will only be posts from users phones
+       //make comment to hike stream
         $scope.makeComment = function(){
-          // var newComment = $scope.commentInput;
-          // socket.emit('comment-sent', newComment);
-          //this user needs to be username and phonenumber
-          // streamFactory.saveComment(user, newComment, streamID);
-          // $scope.commentInput = "";
+          var newComment = $scope.commentInput;
+          console.log(currentUsersInfo)
+          var user = currentUsersInfo[0];
+          console.log(user)
+          streamFactory.saveCommentFromSite(user.username, user.phone, newComment, $scope.userPosition, user.hikeId);
+          socket.emit('comment-sent', newComment);
+          $scope.commentInput = "";
         };
 
         //append comment after hitting socket
