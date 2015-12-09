@@ -83,6 +83,11 @@ router.post('/user/comment', function(req, res, next){
                     res.json(err);
                   }
                   else {
+                    client.messages.create({
+                      to: user.phone,
+                      from: '+17203303695',
+                      body: 'Your comment has been saved to the live stream of this hike!'
+                    });
                     res.json(data);
                   }
                 });
