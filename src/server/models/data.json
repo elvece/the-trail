@@ -28,7 +28,7 @@
     "hike_1_stream": {
       "room": "Maroon Bells",
       "users": ["Trailblazer"],
-      "comments": ["->comments.hike_1_comment_1", "->comments.hike_1_comment_2"]
+      "comments": []
     },
     "hike_2_stream": {
       "room": "Arches",
@@ -72,9 +72,7 @@
       "info": "The West Maroon Creek Trail rises steadily between iconic peaks into the capacious upper valley, where grades steepen on a ramp-like path etched in the west wall to the pass. The trail begins on the north side of Maroon Lake to the Scenic Loop split (.3 miles). It rises away into thick aspens that break across an open rock field on the valley floor (1.2 miles : 10,070’). Pick your way through talus to a crest, and drop to the Maroon Snowmass – West Maroon Creek Trail split (1.7 miles : 10,110’). Bear left and level up the west side of Crater Lake to the first group of campsites on the far end (2.0 miles : 10,110’). The trail bends S-SW over the inlet and undulates across rockslides at the base of Maroon Bells, with high points offering great views back at Crater Lake and Pyramid Peak (3.0 miles : 10,295’). It moves quickly up valley under the Len Shoemaker Ridge and crosses east over West Maroon Creek (3.65 miles : 10,515’). Water can be swift during peak runoff, but is generally not an obstacle. The trail rises steadily before clearing the balance of treeline with your first full view of the red-hued headwall and pass in the SW corner (4.45 miles : 10,880’). It crosses West Maroon Creek back to the west side (4.5 miles : 10,905'), weaving through tall willow patches and flower-filled glades. Scan the upper valley for wildlife as you progress – you’ll likely see anything that moves in this big, open space. Travel steepens in short intervals through 5.45 (11,525’) miles into an idyllic landscape under the pass. Views are astonishing as it climbs 945’ in the last mile on a ramp-like trail to West Maroon Pass (6.45 miles : 12,465’). Be mindful of footing on this narrow, potentially unstable approach. The pass spans a small notch in the SW corner of the headwall with exceptional views across West Maroon Creek valley, and down East Fork drainage on the Crested Butte side. Expect crowds on the pass, since many hikers are generally traveling on the same time schedule.",
       "likes": "2",
       "stream": ["->streams.hike_1_stream"]
-    }
-  },
-
+    },
     "hike_2": {
       "admin_id": "2",
       "name": "Royal Arch Trail",
@@ -151,4 +149,4 @@
       "stream": ["->streams.hike_6_stream"]
     }
   }
-
+}

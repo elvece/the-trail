@@ -5,3 +5,4 @@ notes.md
 *.env
 _env.sh
 src/client/public/bower_components/
+commentSeed

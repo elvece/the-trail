@@ -17,7 +17,7 @@
   <div class="col-sm-12 col-md-8">
     <h2>Map Display</h2>
       <div class="map">
-        <ng-map center="{{coordinates.latitude}},{{coordinates.longitude}}" zoom="17">
+        <ng-map center="{{coordinates.latitude}},{{coordinates.longitude}}" zoom="15">
 
           <!-- current stream comment markers, for real time display -->
           <marker ng-repeat="info in mapMarkers" id="{{info.id}}" position="{{info.location[0]}},{{info.location[1]}}"
