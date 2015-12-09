@@ -8,7 +8,7 @@ angular.module('directives')
         ///// *** GLOBALS *** /////
 
         //for local: 'http://localhost:3000', remove for heroku
-        var socket = io.connect('//the-trail.herokuapp.com/#/');
+        var socket = io.connect();
         //to populate view
         var streamBoard = angular.element(document.querySelector('#stream-board'));
         var mapDiv = angular.element(document.querySelector('#map'));
