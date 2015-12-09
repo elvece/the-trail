@@ -1,3 +1,16 @@
 
 <h2>Map Display</h2>
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+  <!--   <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker> -->
+  <!--   <ui-gmap-marker coords="marker.coords" idkey="marker.id" options="marker.options"></ui-gmap-marker> -->
+
+  <ui-gmap-markers models="map.markers" coords="'coords'" icon="'icon'" events="map.markersEvents" options="'options'">
+
+    <ui-gmap-windows show="'showWindow'" ng-cloak>
+      <div>
+        <p ng-non-bindable>{{title}}</p>
+      </div>
+    </ui-gmap-windows>
+
+  </ui-gmap-markers>
+</ui-gmap-google-map>

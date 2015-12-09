@@ -27,17 +27,11 @@ angular.module('directives')
           currentUsersInfo.push(newUser);
 
           var message_init = 'Thanks '+newUser.username+' for joining The Trail. To start live streaming, please first share your location from your mobile device.';
-          streamFactory.startText(newUser.username, newUser.phone, message_init, newUser.hikeId)
+          streamFactory.startSession(newUser.username, newUser.phone, message_init, newUser.hikeId)
             .then(function(data){
               console.log(data);
               socket.emit('entered', newUser.username);
             });
-
-          // var message_join = ''+newUser.username+' has joined the stream.';
-          // streamFactory.saveComment(newUser.username, newUser.phone, message_join, streamID)
-          //   .then(function(data){
-          //     console.log(data);
-          //   });
           $scope.phoneNumberInput = "";
           $scope.userNameInput = "";
         };

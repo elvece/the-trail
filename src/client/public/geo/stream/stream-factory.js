@@ -18,21 +18,7 @@ streamService.$inject = ['$http'];
         });
       }
 
-      function saveComment(username, phone, message, location, hikeId){
-        return $http({
-          method: 'POST',
-          url: '/geo-share/user/comment',
-          data: {
-                  username: username,
-                  phone: phone,
-                  message: message,
-                  hikeId: hikeId,
-                  location: location
-                }
-        });
-      }
-
-      function startText(username, phone, message, hikeId){
+      function startSession(username, phone, message, hikeId){
         return $http({
           method: 'POST',
           url: '/geo-share/start/session',

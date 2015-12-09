@@ -4,6 +4,7 @@ angular.module('directives')
       restrict: 'E',
       templateUrl: 'geo/map/map.html',
       controller: function($geolocation, $scope,mapFactory, streamFactory){
+        $scope.options = {scrollwheel: false};
 
         $geolocation.getCurrentPosition({
             timeout: 60000
@@ -14,9 +15,42 @@ angular.module('directives')
                 latitude: $scope.myPosition.coords.latitude,
                 longitude: $scope.myPosition.coords.longitude
               },
-              zoom: 17
+              zoom: 17,
+              markers: [],
+              events: {}
             };
+            $scope.marker = {
+              id: Date.now(),
+              coords: {
+                latitude: 39.734528,
+                longitude: -104.975450
+              },
+              showWindow: false,
+              options: {
+                animation: 2,
+                title: 'Home',
+                labelContent: 'test',
+                labelClass: "marker-labels"
+              }
+            };
+
+          $scope.map.markers.push($scope.marker);
+          console.log($scope.map.markers)
+         //  $scope.map.markersEvents = {
+         //    mouseover: function (marker, eventName, model, args) {
+         //      model.options.labelContent = "Position - lat: " + model.latitude + " lon: " + model.longitude;
+         //      model.showWindow = true;
+         //      $scope.$apply();
+         //    },
+         //    mouseout: function (marker, eventName, model, args) {
+         //      model.options.labelContent = " ";
+         //      model.showWindow = false;
+         //      $scope.$apply();
+         //    }
+         //  };
          });
+
+
 
          //do i really need this
         $geolocation.watchPosition({
