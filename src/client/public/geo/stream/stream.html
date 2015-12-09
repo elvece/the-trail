@@ -18,6 +18,7 @@
     <h2>Map Display</h2>
       <div id="map">
         <ng-map center="{{coordinates.latitude}},{{coordinates.longitude}}" zoom="13">
+          <!-- current stream comment markers -->
           <marker ng-repeat="info in mapMarkers" id="{{info.id}}" position="{{info.location[0]}},{{info.location[1]}}"
           on-click="map.showInfoWindow('{{info.windowId}}')">
           </marker>
@@ -27,6 +28,20 @@
               <h3 id="firstHeading" class="firstHeading">{{info.user.username}}</h3>
               <div id="bodyContent">
                 <p>{{info.message}}</p>
+              </div>
+            </div>
+          </info-window>
+
+          <!-- all hike stream comment markers -->
+          <marker ng-repeat="comment in hikeComments" id="{{comment._id}}" position="{{comment.location[0]}},{{comment.location[1]}}"
+          on-click="map.showcommentWindow('{{comment.user._id}}')">
+          </marker>
+          <info-window ng-repeat="comment in hikeComments" id="{{comment.user._id}}" visible-on-marker="{{comment._id}}">
+            <div ng-non-bindable>
+              <div id="siteNotice"></div>
+              <h3 id="firstHeading" class="firstHeading">{{comment.user[0].username}}</h3>
+              <div id="bodyContent">
+                <p>{{comment.message}}</p>
               </div>
             </div>
           </info-window>

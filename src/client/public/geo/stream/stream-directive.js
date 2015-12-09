@@ -27,7 +27,7 @@ angular.module('directives')
 
           NgMap.getMap().then(function(map) {
             $scope.map = map;
-            console.log('markers', map.markers);
+            // console.log('markers', map.markers);
           });
 
 
