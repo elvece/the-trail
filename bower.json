@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "ngGeolocation": "~0.0.8",
-    "ngmap": "~1.15.1"
+    "ngmap": "~1.15.1",
+    "vivus": "~0.2.3"
   }
 }

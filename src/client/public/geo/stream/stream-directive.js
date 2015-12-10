@@ -50,13 +50,13 @@ angular.module('directives')
           //start session by sending text to user
           $scope.startSession = function(){
             var newUser = new User($scope.userNameInput, $scope.phoneNumberInput);
-            console.log(newUser)
+            // console.log(newUser)
             currentUsersInfo.push(newUser);
 
             var message_init = 'Thanks '+newUser.username+' for joining The Trail at '+$scope.hikeName+'! You can now start commenting on the live stream board using the site.';
             streamFactory.startSession(newUser.username, newUser.phone, message_init, newUser.hikeId)
               .then(function(data){
-                console.log(data);
+                // console.log(data);
                 socket.emit('entered', newUser.username);
               });
             $scope.phoneNumberInput = "";
@@ -85,7 +85,7 @@ angular.module('directives')
             } else {
               $scope.errorMessage = 'That username is already in use. Please choose another one.';
             }
-            console.log(user.username);
+            // console.log(user.username);
             socket.emit('entered', user.username);
           }
 
@@ -124,7 +124,7 @@ angular.module('directives')
           $scope.makeComment = function(){
             var newComment = makeCommentData();
             $scope.mapMarkers.push(newComment);
-            console.log($scope.mapMarkers)
+            // console.log($scope.mapMarkers)
             $scope.commentId = newComment.id;
             $scope.commentLocation = {
               latitude: location[0],
@@ -136,7 +136,7 @@ angular.module('directives')
 
             streamFactory.saveCommentFromSite(newComment.user.username, newComment.user.phone, newComment.message, newComment.location, newComment.user.hikeId)
               .then(function(data){
-                console.log(data);
+                // console.log(data);
                 socket.emit('comment-sent', newComment.message, newComment.location);
                 //generate marker event
               });
@@ -145,7 +145,7 @@ angular.module('directives')
 
           //append comment after hitting socket
           socket.on('comment-received', function(message){
-            console.log(message);
+            // console.log(message);
             streamBoard.append('<li>' +message.user+ ': '+message.message+'</li>');
           });
 

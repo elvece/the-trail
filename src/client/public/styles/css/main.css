@@ -156,3 +156,11 @@ h4 {
   background-color: #158ffe;
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg); }
+
+svg * {
+  fill: none;
+  stroke: currentColor; }
+
+#my-div {
+  height: 900px;
+  width: 900px; }
