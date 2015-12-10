@@ -146,7 +146,7 @@ angular.module('directives')
           //append comment after hitting socket
           socket.on('comment-received', function(message){
             console.log(message);
-            streamBoard.append('<li>' +message.user+ ': '+message.message+'</li>');
+            streamBoard.append('<li class="chat-bubble left">' +message.user+ ': '+message.message+'</li>');
           });
 
         });
