@@ -21,10 +21,10 @@ var sass = require('gulp-sass');
 
 var paths = {
   sass: [
-    './src/client/public/styles/scss/*.scss',
+    './src/client/public/assets/styles/scss/*.scss',
   ],
   styles: [
-    './src/client/public/styles/css/*.css',
+    './src/client/public/assets/styles/css/*.css',
   ],
   scripts: [
     './src/client/js/*.js',
@@ -71,7 +71,7 @@ gulp.task('browser-sync', ['nodemon'], function(done) {
 gulp.task('styles', function () {
   return gulp.src(paths.sass)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./src/client/public/styles/css'));
+    .pipe(gulp.dest('./src/client/public/assets/styles/css'));
 });
 
 gulp.task('sass:watch', function () {
