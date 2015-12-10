@@ -1,10 +1,13 @@
-<div class="container section-padding">
+<div class="section-padding center">
+<br><br><br>
   <h2>Geo Share</h2>
   <p>Submit photos and comments while on the trail to share current condition on the trail with other adventurers!</p>
   <p>Select a hike to get started:</p>
   <br>
-  <div ng-repeat="hike in hikes">
-    <a class="btn btn-default" href="#/geo/share/{{hike._id}}/{{hike.name}}">{{hike.name}}</a>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4" ng-repeat="hike in hikes">
+      <a class="btn btn-default" href="#/geo/share/{{hike._id}}/{{hike.name}}"><img ng-src="{{hike.images[0]}}"></img></a><p>{{hike.name}}</p>
+    </div>
   </div>
   <br>
 </div>

@@ -1,21 +1,52 @@
 
 <!-- set timeout for message disapper -->
-<div class="alert alert-warning" role="alert" class="error-message" ng-model="errorMessage"></div>
-
-<p class="lead">Enter your phone number to start posting on the trail!</p>
-<form ng-submit="startSession()" name="userInfo">
-  <label>Phone Number:&nbsp;&nbsp;</label>
-  <input type="text" ng-model="phoneNumberInput" class="" autocomplete="off" placeholder="eg: 3034567899" required>
-  <label>Username:&nbsp;&nbsp;</label>
-  <input type="text" ng-model="userNameInput" class="" autocomplete="on" placeholder="please be nice" required>
-  <button ng-disabled="userInfo.$invalid" class="btn btn-warning">Join the Trail</button>
-</form>
-<br>
-
+<!-- <div class="alert alert-warning" role="alert" class="error-message" ng-model="errorMessage"></div> -->
 
 <div class="row">
-  <div class="col-sm-12 col-md-8">
-    <h2>Map Display</h2>
+  <div class="col-md-4 col-md-offset-4">
+    <p class="lead">Enter your phone number to start posting on the trail!</p>
+    <form ng-submit="startSession()" name="userInfo">
+      <div class="form-group">
+          <label class="control-label">Phone Number:&nbsp;&nbsp;</label>
+          <input type="text" ng-model="phoneNumberInput" class="form-control" autocomplete="off" placeholder="eg: 3034567899" required>
+      </div>
+      <div class="form-group">
+          <label class="control-label">Username:&nbsp;&nbsp;</label>
+          <input type="text" ng-model="userNameInput" class="form-control" autocomplete="on" placeholder="your username" required>
+      </div>
+      <div class="form-group center">
+        <button ng-disabled="userInfo.$invalid" class="btn btn-warning">Join the Trail</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+    <h2>Geo Stream</h2>
+    <div class="stream-box">
+      <div class="message-box">
+        <ul id="stream-board" class="">
+          <li class="chat-bubble left" ng-repeat="comment in hikeComments">{{comment.user[0].username}}: {{comment.message}}</li>
+        </ul>
+      </div>
+      <!-- upload image go here -->
+      <form ng-submit="makeComment()" name="comment">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">*</span>
+            <input type="text" ng-model="commentInput" class="form-control" autocomplete="off" required>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Send</button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><br><br><br>
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+    <h2>Geo Map</h2>
       <div class="map">
         <ng-map center="{{coordinates.latitude}},{{coordinates.longitude}}" zoom="15">
 
@@ -48,20 +79,6 @@
           </info-window>
         </ng-map>
       </div>
-  </div>
-  <div class="col-sm-12 col-md-4">
-    <h2>Stream Board</h2>
-    <div class="stream-box">
-      <div class="message-box">
-        <ul id="stream-board" class="stripes">
-          <li class="" ng-repeat="comment in hikeComments">{{comment.user[0].username}}: {{comment.message}}</li>
-        </ul>
-      </div>
-      <!-- upload image go here -->
-      <form ng-submit="makeComment()" name="comment">
-        <input type="text" ng-model="commentInput" class="comment-input" autocomplete="off" required>
-        <button ng-disabled="comment.$invalid" class="btn btn-default">Send</button>
-      </form>
     </div>
   </div>
 </div>

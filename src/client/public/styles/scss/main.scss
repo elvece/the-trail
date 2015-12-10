@@ -111,10 +111,10 @@ h4 {
 }
 
 .stream-box {
-  width: 100%;
-  height: 600px;
-  border: 2px solid black;
-  background-color: #ccc;
+  width: 90%;
+  height: 300px;
+  // border-left: 2px solid black;
+  // background-color: #ccc;
 }
 
 .comment-input{
@@ -161,6 +161,7 @@ h4 {
   position: relative;
   margin: 10px;
   max-width: 80%;
+  background-color: #e6e5eb;
 }
 
 .chat-bubble:before {
@@ -170,13 +171,9 @@ h4 {
   width: 9px;
   position: absolute;
   bottom: -7.5px;
+
 }
 
-.chat-bubble.left {
-  background-color: #e6e5eb;
-  float: left;
-  margin-left: 55px;
-}
 
 .chat-bubble.left:before {
   background-color: #e6e5eb;
@@ -195,4 +192,8 @@ h4 {
   background-color: #158ffe;
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
+}
+
+img {
+  max-width:300px;
 }
