@@ -1,10 +1,9 @@
 <h1 class="col-xs-12 col-md-8 col-md-offset-2 text-center section-padding">All Hikes</h1><br>
 
-<div class="col-xs-12 col-md-8 col-md-offset-2">
-  <div class="row section-padding images" ng-repeat="">
-    <div class="col-xs-4 col-md-4">
-      <img ng-src="https://placehold.it/450x450" class="img-responsive" alt="Logo">
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 center" ng-repeat="hike in hikes">
+      <a class="btn btn-default" href="#/geo/share/{{hike._id}}/{{hike.name}}"><img ng-src="{{hike.images[0]}}"></img></a><p>{{hike.name}}</p>
     </div>
-  </div>
 </div>
 
