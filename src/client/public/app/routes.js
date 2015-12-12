@@ -8,7 +8,7 @@ app.config(['$routeProvider', function($routeProvider){
   .when('/generator', {
     templateUrl: '../views/generator.html'
   })
-  .when('/hike', {
+  .when('/hike/:hikeId/:hikeName', {
     templateUrl: '../hikes/hike.html'
   })
   .when('/hikes/all', {

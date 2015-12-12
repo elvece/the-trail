@@ -4,7 +4,8 @@ angular.module('directives')
       restrict: 'A',
       templateUrl: 'hikes/hike.html',
       controller: function(hikeFactory){
-        var hike = hikeFactory.getHike()
+        console.log($scope.hikeId);
+        hikeFactory.getHike($scope.hikeId)
           .then(function(data){
             console.log(data);
           });
