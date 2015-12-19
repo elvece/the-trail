@@ -1,11 +1,11 @@
 angular.module('directives')
-  .directive('hikeTemplate',['hikeFactory',function(hikeFactory){
+  .directive('hikeTemplate',['hikeFactory', function($scope,$routeParams, hikeFactory){
     return {
       restrict: 'A',
       templateUrl: 'hikes/hike.html',
-      controller: function(hikeFactory){
-        console.log($scope.hikeId);
-        hikeFactory.getHike($scope.hikeId)
+      controller: function($scope, $routeParams, hikeFactory){
+        console.log($routeParams.hikeId);
+        hikeFactory.getHike($routeParams.hikeId)
           .then(function(data){
             console.log(data);
           });
