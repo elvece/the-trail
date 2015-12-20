@@ -4,10 +4,16 @@ angular.module('directives')
       restrict: 'A',
       templateUrl: 'hikes/hike.html',
       controller: function($scope, $routeParams, hikeFactory){
-        console.log($routeParams.hikeId);
-        hikeFactory.getHike($routeParams.hikeId)
+        $scope.hikeId = $routeParams.hikeId;
+        hikeFactory.getHike($scope.hikeId)
           .then(function(data){
-            console.log(data);
+            // console.log(data.data);
+            $scope.hikeName = data.data.name;
+            $scope.features = data.data.features;
+            $scope.images = data.data.images;
+            $scope.info = data.data.info;
+            $scope.location = data.data.location;
+            $scope.coordinates = data.data.map;
           });
       }
     };
