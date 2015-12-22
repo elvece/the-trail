@@ -8,7 +8,7 @@ var Hike = new Schema(
     name: String,
     location: String,
     area: Number,
-    distance_miles: Number ,
+    distance_miles: Number,
     duration_hours: Number,
     difficulity: Number,
     features: [String],
