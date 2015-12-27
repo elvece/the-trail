@@ -202,14 +202,29 @@ img {
   margin-top: 10em;
 }
 
+// *** NAV BAR *** //
 @media (min-width: 768px) {
   .navbar .navbar-nav {
-      display: inline-block;
-      float: none;
-      vertical-align: top;
+    display: inline-block;
+    float: none;
+    vertical-align: top;
   }
 
   .navbar .navbar-collapse {
-      text-align: center;
+    text-align: center;
   }
+}
+
+.navbar-inverse {
+  background-color: #B1B1B1;
+  border-color: #DFDFDF;
+}
+
+.navbar-inverse .navbar-collapse {
+  border-color: #DFDFDF;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+  color: white;
+  background-color: black;
 }
