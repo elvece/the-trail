@@ -168,3 +168,7 @@ img {
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
   color: white;
   background-color: black; }
+
+.svg-box {
+  height: 500px;
+  width: 700px; }
