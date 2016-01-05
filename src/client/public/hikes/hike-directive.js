@@ -7,7 +7,7 @@ angular.module('directives')
         $scope.hikeId = $routeParams.hikeId;
         hikeFactory.getHike($scope.hikeId)
           .then(function(data){
-            console.log(data.data);
+            // console.log(data.data);
             $scope.hikeName = data.data.name;
             $scope.features = data.data.features;
             $scope.images = data.data.images;
